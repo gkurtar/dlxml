@@ -1,0 +1,395 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	
+	<xsd:element name="MessageSpec">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="MessageInfo" type="CT_MessageInfo" />
+				<xsd:element name="RelationalExpressions" type="CT_RelationalExpressions" minOccurs="0" />
+				<xsd:element name="Fields">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="Field" maxOccurs="unbounded">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="SelectiveCondition" type="CT_Condition" minOccurs="0" />
+										<xsd:group ref="EG_FieldType" />
+									</xsd:sequence>
+									<xsd:attribute name="DFI_DUI" type="xsd:string" use="required"/>
+									<xsd:attribute name="Name" type="xsd:string" use="required"/>
+									<xsd:attribute name="Order" type="xsd:short" use="required"/>
+									<xsd:attribute name="BitPosition" type="xsd:nonNegativeInteger" use="required"/>
+									<xsd:attribute name="BitLength" type="xsd:positiveInteger" use="required"/>
+									<xsd:attribute name="DataType" use="required">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:string">
+												<xsd:enumeration value="short"/>
+												<xsd:enumeration value="long"/>
+												<xsd:enumeration value="float"/>
+												<xsd:enumeration value="double"/>
+												<xsd:enumeration value="boolean"/>
+												<xsd:enumeration value="string"/>
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:attribute>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="CT_MessageInfo">
+		<xsd:sequence>
+			<xsd:element name="MessageNetwork">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="LINK_11"/>
+						<xsd:enumeration value="LINK_16"/>
+						<xsd:enumeration value="IJMS"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="MessageName" type="xsd:string"/>
+			<xsd:element name="Identification">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Id" maxOccurs="unbounded">
+							<xsd:complexType>
+								<xsd:attribute name="BitPosition" type="xsd:nonNegativeInteger" use="required"/>
+								<xsd:attribute name="BitLength" type="xsd:positiveInteger" use="required"/>
+								<xsd:attribute name="Resolution" use="required">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:normalizedString">
+											<xsd:pattern value="([0-1])+"></xsd:pattern>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:attribute>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_RelationalExpressions">
+		<xsd:sequence>
+			<xsd:element name="RelationalExpression" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:attribute name="Name" type="xsd:string" use="required"/>
+					<!-- Not needed <xsd:attribute name="Type" type="xsd:string" use="required"/> -->
+					<xsd:attribute name="LeftOperand" type="xsd:string" use="required"/>
+					<xsd:attribute name="Operator" type="ST_Operator" use="required"/>
+					<xsd:attribute name="RightOperand" type="xsd:string" use="required"/>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:group name="EG_FieldType">
+		<xsd:choice>
+			<xsd:group ref="EG_Binary"  />
+			<xsd:group ref="EG_Logical"  />
+			<xsd:group ref="EG_CharacterStream" />
+			<xsd:group ref="EG_Numeric" />
+		</xsd:choice>
+	</xsd:group>
+ 	
+ 	<xsd:group name="EG_Binary">
+		<xsd:sequence>
+			<xsd:element name="Binary">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="DefaultValue" type="xsd:boolean" />
+					</xsd:sequence>
+				</xsd:complexType>    		
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:group>
+
+ 	<xsd:group name="EG_Logical">
+		<xsd:sequence>
+			<xsd:element name="Logical">
+				<xsd:complexType>
+					<xsd:choice>
+						<xsd:element name="Switch" type="CT_SwitchLogical" />
+						<xsd:element name="GenericValues" type="CT_GenericValues" minOccurs="0"/>
+					</xsd:choice>    
+				</xsd:complexType>    		
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:group>
+
+	<xsd:complexType name="CT_SwitchLogical">
+		<xsd:sequence>
+			<xsd:element name="Case" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="CaseCondition" type="CT_Condition" />
+						<xsd:element name="GenericValues" type="CT_GenericValues" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="CT_Condition">
+		<xsd:choice>
+			<xsd:element name="And" type="CT_LogicalOperation" />
+			<xsd:element name="Or" type="CT_LogicalOperation" />
+		</xsd:choice>
+	</xsd:complexType>
+	
+	<xsd:complexType name="CT_LogicalOperation">
+		<xsd:sequence>
+			<xsd:group ref="EG_LogicalOperand" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:group name="EG_LogicalOperand">
+		<xsd:choice>
+			<xsd:element name="And" type="CT_LogicalOperation" />
+			<xsd:element name="Or" type="CT_LogicalOperation" />
+			<xsd:element name="Operand" type="CT_Operand" />
+		</xsd:choice>
+	</xsd:group>
+
+	<xsd:complexType name="CT_Operand">
+		<xsd:simpleContent>
+			 <xsd:restriction base="CT_Operand_Extension">
+			 	<xsd:pattern value="\i\S*"/>
+			 </xsd:restriction>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_Operand_Extension">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="BooleanNot" type="xsd:token" use="optional" fixed="!" />
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+<!--
+<xsd:complexType name="CT_GenericValues">
+	<xsd:all>
+		<xsd:element name="Illegal" type="CT_Invalid" minOccurs="0" />
+		<xsd:element name="Undefined" type="CT_Invalid" minOccurs="0" />
+		<xsd:element name="NoStatement" minOccurs="0">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:normalizedString">
+					<xsd:pattern value="([0-1])+"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:element>
+	</xsd:all>
+</xsd:complexType>
+
+<xsd:complexType name="CT_Invalid">
+	<xsd:sequence>
+		<xsd:element name="InputData" type="xsd:integer" minOccurs="0" maxOccurs="unbounded" />
+		<xsd:element name="InclusiveRange" minOccurs="0" maxOccurs="unbounded">
+			<xsd:complexType>
+				<xsd:attribute name="Start" type="xsd:integer" use="required"/>
+				<xsd:attribute name="End" type="xsd:integer" use="required"/>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:sequence>
+</xsd:complexType>
+-->
+	<xsd:complexType name="CT_GenericValues">
+		<xsd:sequence>
+			<xsd:group ref="EG_GenericValues" minOccurs="1" maxOccurs="3"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:group name="EG_GenericValues">
+		<xsd:choice>
+			<xsd:element name="Illegal" type="CT_Invalid" />
+			<xsd:element name="Undefined" type="CT_Invalid" />
+			<xsd:element name="NoStatement">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:normalizedString">
+						<xsd:pattern value="([0-1])+"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:choice>
+	</xsd:group>
+
+	<xsd:complexType name="CT_Invalid">
+		<xsd:sequence>
+			<xsd:element name="InputData" type="xsd:integer" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="InclusiveRange" minOccurs="0" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:attribute name="Start" type="xsd:integer" use="required"/>
+					<xsd:attribute name="End" type="xsd:integer" use="required"/>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:group name="EG_CharacterStream">
+		<xsd:sequence>
+			<xsd:element name="CharacterStream">
+				<xsd:complexType>
+					<xsd:choice>
+						<xsd:element name="Switch">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="Case" maxOccurs="unbounded">
+										<xsd:complexType>
+											<xsd:sequence>
+												<xsd:element name="CaseCondition" type="CT_Condition" />
+												<xsd:group ref="EG_StringAndGenericValues"/>
+											</xsd:sequence>
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:group ref="EG_StringAndGenericValues"/>
+					</xsd:choice>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:group>
+
+	<xsd:group name="EG_StringAndGenericValues">
+		<xsd:sequence>
+			<xsd:element name="String" type="CT_String" />
+			<xsd:element name="GenericValues" type="CT_GenericValues" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:group>
+
+	<xsd:complexType name="CT_String">
+		<xsd:sequence>
+			<xsd:element name="Substring" minOccurs="1" maxOccurs="unbounded">
+<!--<Substring StartPos="0" SubstringLength="1" EncodingStartPos="0" EncodedCharLength="1" Vocabulary="Dual" />-->
+				<xsd:complexType>
+					<xsd:attribute name="StartPos" type="xsd:nonNegativeInteger" use="required"/>
+					<xsd:attribute name="SubstringLength" type="xsd:positiveInteger" use="required"/>
+					<xsd:attribute name="EncodingStartPos" type="xsd:nonNegativeInteger" use="required"/>
+					<xsd:attribute name="EncodedCharLength" type="xsd:positiveInteger" use="required"/>
+					<xsd:attribute name="Vocabulary" type="xsd:string" use="required"/>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="Length" type="xsd:positiveInteger" use="required" />
+	</xsd:complexType>
+
+	<xsd:group name="EG_Numeric">
+		<xsd:sequence>
+			<xsd:element name="Numeric">
+				<xsd:complexType>
+					<xsd:choice>
+						<xsd:element name="Switch" type="CT_SwitchNumeric" />
+						<xsd:group ref="EG_InputMapping"/>
+					</xsd:choice>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:group>
+
+	<xsd:complexType name="CT_SwitchNumeric">
+		<xsd:sequence>
+			<xsd:element name="Case" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="CaseCondition" type="CT_Condition" />
+						<xsd:group ref="EG_InputMapping"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:group name="EG_InputMapping">
+		<xsd:sequence>
+			<xsd:element name="InputMapping" type="CT_InputMapping" />
+			<xsd:element name="GenericValues" type="CT_GenericValues" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:group>
+
+	<xsd:complexType name="CT_InputMapping">
+		<xsd:sequence>
+			<xsd:element name="Map"  maxOccurs="unbounded" >
+				<xsd:complexType>
+					<xsd:choice>
+						<xsd:element name="UniformDistribution">
+							<xsd:complexType>
+						        <xsd:attribute name="Start" type="xsd:double" use="required"/>
+								<xsd:attribute name="End" type="xsd:double" use="required"/>
+								<xsd:attribute name="BitCodeStart" type="xsd:integer" use="required"/>
+								<xsd:attribute name="BitCodeEnd" type="xsd:integer" use="required"/>
+								<xsd:attribute name="Increment" type="xsd:double" use="required"/>
+							</xsd:complexType>
+						</xsd:element>
+                        <xsd:element name="BoundedInterval">
+                        	<xsd:complexType>
+						        <xsd:attribute name="Start" type="xsd:double" use="required"/>
+						        <xsd:attribute name="End" type="xsd:double" use="required"/>
+						        <xsd:attribute name="BitCode" type="xsd:integer" use="required"/>
+							</xsd:complexType>
+                        </xsd:element>
+						<xsd:element name="UnboundedInterval">
+							<xsd:complexType>    
+								<xsd:attribute name="Boundary" type="xsd:double" use="required"/>
+								<xsd:attribute name="Operator" type="ST_Operator" use="required"/>
+								<xsd:attribute name="BitCode" type="xsd:integer" use="required"/>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="ExactValue" type="xsd:positiveInteger" />
+					</xsd:choice>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:simpleType name="ST_Operator">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="LT"/>
+			<xsd:enumeration value="LE"/>
+			<xsd:enumeration value="EQ"/>
+			<xsd:enumeration value="NE"/>
+			<xsd:enumeration value="GE"/>
+			<xsd:enumeration value="GT"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+<!-- <xsd:complexType name="CT_Operand">    
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="BooleanNot" type="xsd:token" use="optional" fixed="!" />
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType> -->
+	
+	<!--  
+	<xsd:complexType name="CT_Condition">
+		<xsd:choice>
+			<xsd:element name="And" type="CT_And" />
+			<xsd:element name="Or" type="CT_Or" />
+		</xsd:choice>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_And">
+		<xsd:sequence>
+			<xsd:element name="Operand" type="CT_Operand" maxOccurs="unbounded"/>
+			<xsd:element name="Or" type="CT_Or" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="CT_Or">
+		<xsd:sequence>
+			<xsd:element name="Operand" type="CT_Operand" maxOccurs="unbounded" />
+			<xsd:element name="And" type="CT_And" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	-->
+	
+
+</xsd:schema>

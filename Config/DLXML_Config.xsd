@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<xsd:element name="Configuration">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Files">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="RuleFiles">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="File" maxOccurs="unbounded">
+											
+											<xsd:complexType>
+												<xsd:attribute name="Name" type="xsd:normalizedString" use="required"/>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+									<xsd:attribute name="SchemaFile" type="xsd:normalizedString" use="required"/>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="Vocabulary">
+								<xsd:complexType>
+									<xsd:attribute name="Name" type="xsd:normalizedString" use="required"/>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="InputStreamSchema">
+								<xsd:complexType>
+									<xsd:attribute name="Name" type="xsd:normalizedString" use="required"/>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+						<!--
+						<xsd:attribute name="DirectoryURL" type="xsd:normalizedString" use="required"/> 
+						 -->
+					</xsd:complexType>
+				</xsd:element>
+				
+				<xsd:element name="Parameters">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="Param" maxOccurs="unbounded">
+								<xsd:complexType>
+									<xsd:attribute name="Key" type="xsd:normalizedString" use="required"/>
+									<xsd:attribute name="Value" type="xsd:normalizedString" use="required"/>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				
+			</xsd:sequence>	
+		</xsd:complexType>
+	</xsd:element>
+
+</xsd:schema>

@@ -1,0 +1,37 @@
+
+<Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+					xsi:noNamespaceSchemaLocation="DLXML_Config.xsd">
+	
+	<!-- <Files  DirectoryURL="./Config/"  > -->
+	<Files>
+		<RuleFiles SchemaFile="DataLinkGrammar.xsd">
+			<File Name="Link11_M1_Rule.xml"/>
+			<File Name="Link11_M81_Rule.xml"/>
+			<File Name="Link11_M2_Rule.xml"/>
+			<File Name="Link11_M82_Rule.xml"/>
+			<File Name="Link11_M6B_Rule.xml"/>
+			<File Name="Link11_M86B_Rule.xml"/>
+			<File Name="Link11_M3_Rule.xml"/>
+			<File Name="Link11_M83_Rule.xml"/>
+			<File Name="Link11_M5_Rule.xml"/>
+			<File Name="Link11_M85_Rule.xml"/>
+			<File Name="Link11_M6C_Rule.xml"/>
+			<File Name="Link11_M86C_Rule.xml"/>
+			<File Name="Link11_M9D_Rule.xml"/>
+			<File Name="Link11_M9E_Rule.xml"/>
+			<File Name="Link11_M11D_Rule.xml"/>
+			<File Name="Link11_M11M_Rule.xml"/>
+			<File Name="Link11_M811M_Rule.xml"/>
+			<File Name="Link11_M12_31_Rule.xml"/>
+			<File Name="Link11_M15_Rule.xml"/>
+		</RuleFiles>
+		<Vocabulary Name="Vocabulary.xml"/>
+		<InputStreamSchema Name="InputDataGrammar.xsd"/>
+	</Files>
+	
+	<Parameters>
+		<Param Key="ValidateInputStreams" Value="false"/>
+		<!--  <ValidateInputStreams>false</ValidateInputStreams> -->
+	</Parameters>
+
+</Configuration>

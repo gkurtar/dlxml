@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<xsd:element name="Message">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Data" maxOccurs="unbounded">
+					<xsd:complexType>    
+						<xsd:simpleContent>
+							<xsd:extension base="xsd:string">
+								<xsd:attribute name="DFI_DUI" use="required" type="xsd:normalizedString" />
+								<xsd:attribute name="Name" type="xsd:string" use="optional" />
+							</xsd:extension>
+						</xsd:simpleContent>
+						
+					</xsd:complexType>
+					
+				</xsd:element>
+			</xsd:sequence>
+
+			<xsd:attribute name="Network" use="required">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="LINK_11"/>
+						<xsd:enumeration value="LINK_16"/>
+						<xsd:enumeration value="IJMS"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			
+			<xsd:attribute name="Name" type="xsd:normalizedString" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	
+</xsd:schema>
