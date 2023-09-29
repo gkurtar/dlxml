@@ -1,0 +1,71 @@
+
+<MessageSpec>
+	<MessageInfo>
+		<MessageNetwork>LINK_11</MessageNetwork>
+		<MessageName>M.12.31</MessageName>
+		<Identification>
+			<Id BitPosition="0" BitLength="4" Resolution="1100"/>
+			<Id BitPosition="4" BitLength="5" Resolution="11111"/>
+		</Identification>
+	</MessageInfo>
+	<Fields>
+		<Field DFI_DUI="2699_005" Name="MessageNumber" Order="0"
+			BitPosition="0" BitLength="4" DataType="short">
+			<Logical>
+				<GenericValues>
+					<Undefined>
+						<InputData>7</InputData>
+					</Undefined>
+				</GenericValues>
+			</Logical>
+		</Field>
+		<Field DFI_DUI="2644_001" Name="System Indicator" Order="1"
+			BitPosition="4" BitLength="5" DataType="short">
+			<Logical/>
+		</Field>
+		<Field DFI_DUI="2646_001" Name="Request/Response" Order="2"
+			BitPosition="9" BitLength="1" DataType="boolean">
+			<Binary>
+				<DefaultValue>true</DefaultValue>
+			</Binary>
+		</Field>
+		<Field DFI_DUI="2502_003" Name="Counter" Order="3"
+			BitPosition="10" BitLength="14" DataType="short">
+			<Logical>
+				<GenericValues>
+					<NoStatement>00000000000000</NoStatement>
+				</GenericValues>
+			</Logical>
+		</Field>
+		<!--
+		<Field DFI_DUI="2517_014" Name="Greenwich Mean Time" Order="4"
+			BitPosition="24" BitLength="24" DataType="long">
+			<Logical>
+				<GenericValues>
+					<Illegal>
+						<InclusiveRange Start="11059201" End="16777215"/>
+					</Illegal>
+					<NoStatement>000000000000000000000000</NoStatement>
+				</GenericValues>
+			</Logical>
+		</Field>
+		-->
+		<Field DFI_DUI="2517_014" Name="Greenwich Mean Time" Order="4"
+			BitPosition="24" BitLength="24" DataType="long">
+			<Numeric>
+				<InputMapping>
+				    <Map>
+				    	<UniformDistribution Start="1" End="86400"
+				    	BitCodeStart="1" BitCodeEnd="11059200" Increment="0.0078125" />
+				    </Map>
+				</InputMapping>
+				<GenericValues>
+					<Illegal>
+						<InclusiveRange Start="11059201" End="16777215"/>
+					</Illegal>
+					<NoStatement>000000000000000000000000</NoStatement>
+				</GenericValues>
+			</Numeric>
+		</Field>
+	</Fields>
+</MessageSpec>

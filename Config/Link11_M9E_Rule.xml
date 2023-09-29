@@ -1,0 +1,236 @@
+
+<MessageSpec>
+	<MessageInfo>
+		<MessageNetwork>LINK_11</MessageNetwork>
+		<MessageName>M.9E</MessageName>
+		<Identification>
+			<Id BitPosition="0" BitLength="4" Resolution="1001"/>
+			<Id BitPosition="4" BitLength="4" Resolution="0100"/>
+		</Identification> 
+	</MessageInfo>
+
+	<RelationalExpressions>
+		<RelationalExpression Name="M_9E_ACT_ZERO" LeftOperand="M.9E::2595_003" Operator="EQ" RightOperand="0"/>
+		<RelationalExpression Name="M_9E_ACT_ONE" LeftOperand="M.9E::2595_003" Operator="EQ" RightOperand="1"/>
+		<RelationalExpression Name="M_9E_ACT_TWO" LeftOperand="M.9E::2595_003" Operator="EQ" RightOperand="2"/>
+		<RelationalExpression Name="M_9E_ACT_THREE" LeftOperand="M.9E::2595_003" Operator="EQ" RightOperand="3"/>
+		<RelationalExpression Name="M_9E_ACT_FOUR" LeftOperand="M.9E::2595_003" Operator="EQ" RightOperand="4"/>
+		<RelationalExpression Name="M_9E_ACT_FIVE" LeftOperand="M.9E::2595_003" Operator="EQ" RightOperand="5"/>
+		<RelationalExpression Name="M_9E_ACT_SIX" LeftOperand="M.9E::2595_003" Operator="EQ" RightOperand="6"/>
+		<RelationalExpression Name="M_9E_ACT_SEVEN" LeftOperand="M.9E::2595_003" Operator="EQ" RightOperand="7"/>
+    	<RelationalExpression Name="M_9E_SW_ZERO" LeftOperand="M.9E::2694_031" Operator="EQ" RightOperand="0"/>
+    	<RelationalExpression Name="M_9E_SW_ONE" LeftOperand="M.9E::2694_031" Operator="EQ" RightOperand="1"/>
+	</RelationalExpressions>
+
+	<Fields>
+		<Field DFI_DUI="2699_005" Name="MessageNumber" Order="0"
+			BitPosition="0" BitLength="4" DataType="short">
+			<Logical>
+				<GenericValues>
+					<Undefined>
+						<InputData>7</InputData>
+					</Undefined>
+				</GenericValues>
+			</Logical>
+		</Field>
+		<Field DFI_DUI="2698_006" Name="Label" Order="1"
+			BitPosition="4" BitLength="4" DataType="short">
+			<Logical/>
+		</Field>
+		<Field DFI_DUI="2500_053" Name="Track Number" Order="2"
+			BitPosition="8" BitLength="12" DataType="string" >
+			<CharacterStream>
+				<String Length="4">
+					<Substring StartPos="0" SubstringLength="4" EncodingStartPos="0"
+					EncodedCharLength="3" Vocabulary="Octal" />
+				</String>
+				<GenericValues>
+					<Illegal>
+						<InputData>0000</InputData>
+						<InputData>0077</InputData>
+						<InputData>0176</InputData>
+						<InputData>0177</InputData>
+						<InputData>7777</InputData>
+					</Illegal>
+				</GenericValues>
+			</CharacterStream>
+		</Field>
+		<Field DFI_DUI="2595_003" Name="Action" Order="3"
+			BitPosition="20" BitLength="3" DataType="short">
+			<Logical/>
+		</Field>
+		<Field DFI_DUI="2500_047" Name="Link 4 Address" Order="4"
+			BitPosition="24" BitLength="13" DataType="string" >
+			<SelectiveCondition>
+				<And>
+					<Operand>M_9E_ACT_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<CharacterStream>
+				<String Length="5">
+					<Substring StartPos="0" SubstringLength="1"
+					EncodingStartPos="0" EncodedCharLength="1" Vocabulary="Dual" />
+					<Substring StartPos="1" SubstringLength="4"
+					EncodingStartPos="1" EncodedCharLength="3" Vocabulary="Octal" />
+				</String>
+			</CharacterStream>
+		</Field>
+		<Field DFI_DUI="2609_001" Name="Voice Call Sign" Order="5"
+			BitPosition="24" BitLength="24" DataType="string" >
+			<SelectiveCondition>
+				<And>
+					<Operand>M_9E_ACT_ONE</Operand>
+				</And>
+			</SelectiveCondition>
+			<CharacterStream>
+				<String Length="4">
+					<Substring StartPos="0" SubstringLength="4" EncodingStartPos="0"
+					EncodedCharLength="6" Vocabulary="L11_ED6_2609_001_VoiceCallSign" />
+				</String>
+			</CharacterStream>
+		</Field>
+		<Field DFI_DUI="2610_001" Name="Voice Control Frequency" Order="6"
+			BitPosition="24" BitLength="13" DataType="short">
+			<SelectiveCondition>
+				<And>
+					<Operand>M_9E_ACT_TWO</Operand>
+				</And>
+			</SelectiveCondition>
+			<Logical>
+				<GenericValues>
+					<Illegal>
+						<InclusiveRange Start="7001" End="7039"/>
+					</Illegal>
+					<NoStatement>0000000000000</NoStatement>
+				</GenericValues>
+			</Logical>
+		</Field>
+		<Field DFI_DUI="2694_031" Name="Switch" Order="7"
+			BitPosition="43" BitLength="1" DataType="boolean">
+			<SelectiveCondition>
+				<And>
+					<Operand>M_9E_ACT_THREE</Operand>
+				</And>
+			</SelectiveCondition>
+			<Binary>
+				<DefaultValue>false</DefaultValue>
+			</Binary>
+		</Field>
+		<Field DFI_DUI="2500_022" Name="Link 1 Nato Track Number" Order="8"
+			BitPosition="24" BitLength="15" DataType="string" >
+			<SelectiveCondition>
+				<And>
+					<Operand>M_9E_ACT_THREE</Operand>
+					<Operand>M_9E_SW_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<CharacterStream>
+				<String Length="5">
+					<Substring StartPos="0" SubstringLength="2" EncodingStartPos="0"
+					EncodedCharLength="3" Vocabulary="L11_ED6_2500_022_Link1_NATO_TrackNumber" />
+					<Substring StartPos="2" SubstringLength="3" EncodingStartPos="6"
+					EncodedCharLength="3" Vocabulary="Octal" />
+				</String>
+			</CharacterStream>
+		</Field>
+		<Field DFI_DUI="2500_048" Name="19 Bit Track Number" Order="9"
+			BitPosition="24" BitLength="19" DataType="string" >
+			<SelectiveCondition>
+				<And>
+					<Operand>M_9E_ACT_THREE</Operand>
+					<Operand>M_9E_SW_ONE</Operand>
+				</And>
+			</SelectiveCondition>
+			<CharacterStream>
+				<String Length="5">
+					<Substring StartPos="0" SubstringLength="2" EncodingStartPos="0"
+					EncodedCharLength="5" Vocabulary="L11_ED6_2500_048_19BitTrackNumber" />
+					<Substring StartPos="2" SubstringLength="3" EncodingStartPos="10"
+					EncodedCharLength="3" Vocabulary="Octal" />
+				</String>
+			</CharacterStream>
+		</Field>
+		<Field DFI_DUI="2610_003" Name="Link 4 Control Frequency" Order="10"
+			BitPosition="24" BitLength="13" DataType="short">
+			<SelectiveCondition>
+				<And>
+					<Operand>M_9E_ACT_FOUR</Operand>
+				</And>
+			</SelectiveCondition>
+			<Logical>
+				<GenericValues>
+					<Illegal>
+						<InclusiveRange Start="7001" End="7039"/>
+					</Illegal>
+					<NoStatement>0000000000000</NoStatement>
+				</GenericValues>
+			</Logical>
+		</Field>
+		<Field DFI_DUI="2694_031" Name="Switch" Order="11"
+			BitPosition="47" BitLength="1" DataType="boolean">
+		<!-- A weird situation is found in this rule since we have already
+		defined a mapping for this field for a different location and is defined in above   -->
+			<SelectiveCondition>
+				<And>
+					<Operand>M_9E_ACT_FIVE</Operand>
+				</And>
+			</SelectiveCondition>
+			<Binary>
+				<DefaultValue>false</DefaultValue>
+			</Binary>
+		</Field>
+		
+		<!-- Due to poor analysis this case is not handled in current CharacterStream element design,
+		Hope to fix in other versions. Below is the supposed element for Mission Number field,
+		it does not handle the last four decimal characters' encoding/decoding,
+		since each decimal char is not limited to fill a fixed area like octal chars in other
+		CharStream element definitions. EncodedCharLength is fixed for octal chars
+		in almost all datalink messages but not for decimal chars, at least this one is not fixed,
+		for example both 8 and 12 could be represented by four bits. This field could not be defined
+		in current mechanism.
+		<Field DFI_DUI="2612_001" Name="Mission Number" Order="11" BitPosition="24" BitLength="24" DataType="string" >
+			<SelectiveCondition>
+				<And>
+					<Operand>M_9E_ACT_SIX</Operand>
+				</And>
+			</SelectiveCondition>
+			<CharacterStream>
+				<String Length="6">
+					<Substring StartPos="0" SubstringLength="2" EncodingStartPos="0"
+					EncodedCharLength="5" Vocabulary="L11_ED6_2612_001_MissionNumber" />
+					<Substring StartPos="2" SubstringLength="4" EncodingStartPos="10"
+					EncodedCharLength="14" Vocabulary="Decimal" />
+				</String>
+			</CharacterStream>
+		</Field>
+		-->
+		<Field DFI_DUI="2612_001" Name="Mission Number" Order="12"
+			BitPosition="24" BitLength="24" DataType="long" >
+			<SelectiveCondition>
+				<And>
+					<Operand>M_9E_ACT_SIX</Operand>
+				</And>
+			</SelectiveCondition>
+			<Logical></Logical>
+		</Field>
+		<Field DFI_DUI="2500_021" Name="ATDL-1 Track Number" Order="13"
+			BitPosition="24" BitLength="16" DataType="string" >
+			<SelectiveCondition>
+				<And>
+					<Operand>M_9E_ACT_SEVEN</Operand>
+				</And>
+			</SelectiveCondition>
+			<CharacterStream>
+				<String Length="5">
+					<Substring StartPos="0" SubstringLength="1" EncodingStartPos="0"
+					EncodedCharLength="4" Vocabulary="L11_ED6_2500_021_ATDL_1_TrackNumber_A1" />
+					<Substring StartPos="1" SubstringLength="1" EncodingStartPos="4"
+					EncodedCharLength="3" Vocabulary="L11_ED6_2500_021_ATDL_1_TrackNumber_A2" />
+					<Substring StartPos="2" SubstringLength="3" EncodingStartPos="7"
+					EncodedCharLength="3" Vocabulary="Octal" />
+				</String>
+			</CharacterStream>
+		</Field>
+		
+	</Fields>
+</MessageSpec>

@@ -1,0 +1,149 @@
+
+
+<MessageSpec>
+	<MessageInfo>
+		<MessageNetwork>LINK_11</MessageNetwork>
+		<MessageName>M.11M</MessageName>
+		<Identification>
+			<Id BitPosition="0" BitLength="4" Resolution="1011"/>
+			<Id BitPosition="4" BitLength="4" Resolution="1100"/>
+		</Identification> 
+	</MessageInfo>
+	<RelationalExpressions>
+		<RelationalExpression Name="M_11M_CAT_1" LeftOperand="M.11M::2596_003" Operator="EQ" RightOperand="1"/>
+		<RelationalExpression Name="M_11M_CAT_2" LeftOperand="M.11M::2596_003" Operator="EQ" RightOperand="2"/>
+		<RelationalExpression Name="M_11M_CAT_3" LeftOperand="M.11M::2596_003" Operator="EQ" RightOperand="3"/>
+		<RelationalExpression Name="M_11M_CAT_5" LeftOperand="M.11M::2596_003" Operator="EQ" RightOperand="5"/>
+	</RelationalExpressions>
+	<Fields>
+		<Field DFI_DUI="2699_005" Name="MessageNumber" Order="0"
+			BitPosition="0" BitLength="4" DataType="short">
+			<Logical>
+				<GenericValues>
+					<Undefined>
+						<InputData>7</InputData>
+					</Undefined>
+				</GenericValues>
+			</Logical>
+		</Field>
+		<Field DFI_DUI="2698_006" Name="Label" Order="1"
+			BitPosition="4" BitLength="4" DataType="short">
+			<Logical/>
+		</Field>
+		<Field DFI_DUI="2504_001" Name="Special Processing Indicator" Order="2"
+			BitPosition="8" BitLength="1" DataType="boolean">
+			<Binary>
+				<DefaultValue>false</DefaultValue>
+			</Binary>
+		</Field>
+		<Field DFI_DUI="2500_027" Name="Track Number" Order="3"
+			BitPosition="9" BitLength="12" DataType="string" >
+			<CharacterStream>
+				<String Length="4">
+					<Substring StartPos="0" SubstringLength="4"
+					EncodingStartPos="0" EncodedCharLength="3" Vocabulary="Octal" />
+				</String>
+				<GenericValues>
+					<Illegal>
+						<InputData>0000</InputData>
+						<InputData>0077</InputData>
+						<InputData>0176</InputData>
+						<InputData>0177</InputData>
+						<InputData>7777</InputData>
+					</Illegal>
+				</GenericValues>
+			</CharacterStream>
+		</Field>
+		<Field DFI_DUI="2596_003" Name="Category" Order="4"
+			BitPosition="21" BitLength="3" DataType="short">
+			<Logical>
+				<GenericValues>
+					<Undefined>
+						<InputData>6</InputData>
+					</Undefined>
+				</GenericValues>
+			</Logical>
+		</Field>
+		<Field DFI_DUI="2636_001" Name="Nationality Alliance" Order="5"
+			BitPosition="24" BitLength="7" DataType="short">
+			<Logical>
+				<GenericValues>
+					<Illegal>
+						<InclusiveRange Start="100" End="127"/>
+					</Illegal>
+					<NoStatement>0000000</NoStatement>
+				</GenericValues>
+			</Logical>
+		</Field>
+		<Field DFI_DUI="2638_001" Name="Specific Type" Order="6"
+			BitPosition="31" BitLength="6" DataType="short">
+			<Logical>
+			<!-- Since this field has a lot of detail we prefer not to give a definition for it -->
+			</Logical>
+		</Field>
+		<Field DFI_DUI="2637_001" Name="General Type" Order="7"
+			BitPosition="37" BitLength="4" DataType="short">
+			<Logical>
+				<Switch>
+					<Case>
+						<CaseCondition>
+							<Or>
+								<Operand>M_11M_CAT_1</Operand>
+							</Or>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InclusiveRange Start="11" End="13"/>
+							</Undefined>
+							<NoStatement>0000</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<Or>
+								<Operand>M_11M_CAT_2</Operand>
+							</Or>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InclusiveRange Start="12" End="13"/>
+							</Undefined>
+							<NoStatement>0000</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<Or>
+								<Operand>M_11M_CAT_3</Operand>
+								<Operand>M_11M_CAT_5</Operand>
+							</Or>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InclusiveRange Start="4" End="13"/>
+							</Undefined>
+							<NoStatement>0000</NoStatement>
+						</GenericValues>
+					</Case>
+				</Switch>
+			</Logical>
+		</Field>
+		<Field DFI_DUI="2500_043" Name="PURU Source" Order="8"
+			BitPosition="41" BitLength="7" DataType="string" >
+			<CharacterStream>
+				<String Length="3">
+					<Substring StartPos="0" SubstringLength="1"
+					EncodingStartPos="0" EncodedCharLength="1" Vocabulary="Dual" />
+                    <Substring StartPos="1" SubstringLength="2"
+                    EncodingStartPos="1" EncodedCharLength="3" Vocabulary="Octal" />
+				</String>
+				<GenericValues>
+					<Illegal>
+						<InputData>000</InputData>
+						<InputData>077</InputData>
+					</Illegal>
+				</GenericValues>
+			</CharacterStream>
+		</Field>
+	</Fields>
+</MessageSpec>

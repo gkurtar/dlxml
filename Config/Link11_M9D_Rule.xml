@@ -1,0 +1,182 @@
+
+<MessageSpec>
+	<MessageInfo>
+		<MessageNetwork>LINK_11</MessageNetwork>
+		<MessageName>M.9D</MessageName>
+		<Identification>
+			<Id BitPosition="0" BitLength="4" Resolution="1001"/>
+			<Id BitPosition="4" BitLength="4" Resolution="0011"/>
+		</Identification>
+	</MessageInfo>
+	<RelationalExpressions>		
+		<RelationalExpression Name="M_9D_SW_ZERO" LeftOperand="M.9D::2694_027" Operator="EQ" RightOperand="0"/>
+	</RelationalExpressions>
+	<Fields>
+		<Field DFI_DUI="2699_005" Name="MessageNumber" Order="0"
+			BitPosition="0" BitLength="4" DataType="short">
+			<Logical>
+				<GenericValues>
+					<Undefined>
+						<InputData>7</InputData>
+					</Undefined>
+				</GenericValues>
+			</Logical>
+		</Field>
+		<Field DFI_DUI="2698_006" Name="Label" Order="1"
+			BitPosition="4" BitLength="4" DataType="short">
+			<Logical/>
+		</Field>
+		<Field DFI_DUI="2694_027" Name="Switch" Order="2"
+			BitPosition="23" BitLength="1" DataType="boolean">
+			<Binary>
+				<DefaultValue>true</DefaultValue>
+			</Binary>
+		</Field>
+		<Field DFI_DUI="2500_016" Name="Track Number Two" Order="3"
+			BitPosition="8" BitLength="6" DataType="string">
+			<SelectiveCondition>
+				<And>
+					<Operand>M_9D_SW_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<CharacterStream>
+				<String Length="2">
+					<Substring StartPos="0" SubstringLength="2"
+					EncodingStartPos="0" EncodedCharLength="3" Vocabulary="Octal" />
+				</String>
+				<GenericValues>
+					<Illegal>
+						<InputData>77</InputData>
+					</Illegal>
+					<NoStatement>000000</NoStatement>
+				</GenericValues>
+			</CharacterStream>
+		</Field>
+		<Field DFI_DUI="2604_001" Name="Reception Quality 1" Order="4"
+			BitPosition="14" BitLength="3" DataType="short">
+			<SelectiveCondition>
+				<And>
+					<Operand>M_9D_SW_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<Logical>
+				<GenericValues>
+					<NoStatement>000</NoStatement>
+				</GenericValues>
+			</Logical>
+		</Field>
+		<Field DFI_DUI="2500_015" Name="Track Number One" Order="5"
+			BitPosition="17" BitLength="6" DataType="string">
+			<SelectiveCondition>
+				<And>
+					<Operand>M_9D_SW_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<CharacterStream>
+				<String Length="2">
+					<Substring StartPos="0" SubstringLength="2"
+					EncodingStartPos="0" EncodedCharLength="3" Vocabulary="Octal" />
+				</String>
+				<GenericValues>
+					<Illegal>
+						<InputData>77</InputData>
+					</Illegal>
+					<NoStatement>000000</NoStatement>
+				</GenericValues>
+			</CharacterStream>
+		</Field>
+		<Field DFI_DUI="2604_004" Name="Reception Quality 4" Order="6"
+			BitPosition="24" BitLength="3" DataType="short">
+			<SelectiveCondition>
+				<And>
+					<Operand>M_9D_SW_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<Logical>
+				<GenericValues>
+					<NoStatement>000</NoStatement>
+				</GenericValues>
+			</Logical>
+		</Field>
+		<Field DFI_DUI="2500_018" Name="Track Number Four" Order="7"
+			BitPosition="27" BitLength="6" DataType="string">
+			<SelectiveCondition>
+				<And>
+					<Operand>M_9D_SW_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<CharacterStream>
+				<String Length="2">
+					<Substring StartPos="0" SubstringLength="2"
+					EncodingStartPos="0" EncodedCharLength="3" Vocabulary="Octal" />
+				</String>
+				<GenericValues>
+					<Illegal>
+						<InputData>77</InputData>
+					</Illegal>
+					<NoStatement>000000</NoStatement>
+				</GenericValues>
+			</CharacterStream>
+		</Field>
+		<Field DFI_DUI="2604_003" Name="Reception Quality 3" Order="8"
+			BitPosition="33" BitLength="3" DataType="short">
+			<SelectiveCondition>
+				<And>
+					<Operand>M_9D_SW_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<Logical>
+				<GenericValues>
+					<NoStatement>000</NoStatement>
+				</GenericValues>
+			</Logical>
+		</Field>
+		<Field DFI_DUI="2500_017" Name="Track Number Three" Order="9"
+			BitPosition="36" BitLength="6" DataType="string">
+			<SelectiveCondition>
+				<And>
+					<Operand>M_9D_SW_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<CharacterStream>
+				<String Length="2">
+					<Substring StartPos="0" SubstringLength="2"
+					EncodingStartPos="0" EncodedCharLength="3" Vocabulary="Octal" />
+				</String>
+				<GenericValues>
+					<Illegal>
+						<InputData>77</InputData>
+					</Illegal>
+					<NoStatement>000000</NoStatement>
+				</GenericValues>
+			</CharacterStream>
+		</Field>
+		<Field DFI_DUI="2604_002" Name="Reception Quality 2" Order="10"
+			BitPosition="42" BitLength="3" DataType="short">
+			<SelectiveCondition>
+				<And>
+					<Operand>M_9D_SW_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<Logical>
+				<GenericValues>
+					<NoStatement>000</NoStatement>
+				</GenericValues>
+			</Logical>
+		</Field>
+		
+		<Field DFI_DUI="2605_001" Name="Net Cycle Time" Order="11"
+			BitPosition="24" BitLength="6" DataType="short">
+			<SelectiveCondition>
+				<And>
+					<Operand BooleanNot="!">M_9D_SW_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<Logical>
+				<GenericValues>
+					<NoStatement>000000</NoStatement>
+				</GenericValues>
+			</Logical>
+		</Field>
+	</Fields>
+</MessageSpec>

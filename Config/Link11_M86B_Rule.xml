@@ -1,0 +1,356 @@
+<MessageSpec>	
+	<MessageInfo>
+		<MessageNetwork>LINK_11</MessageNetwork>
+		<MessageName>M.86B</MessageName>
+		<Identification>
+			<Id BitPosition="0" BitLength="4" Resolution="1000"/>
+		</Identification>
+	</MessageInfo>
+	
+	<RelationalExpressions>
+		<RelationalExpression Name="M_86B_RS_EQ_ZERO" LeftOperand="M.86B::2704_001" Operator="EQ" RightOperand="0"/>
+		<RelationalExpression Name="M_86B_EVSW_EQ_ZERO" LeftOperand="M.86B::2694_008" Operator="EQ" RightOperand="0"/>
+        <RelationalExpression Name="M_86B_FREQ_MUL_EQ_ZERO" LeftOperand="M.86B::2574_001" Operator="EQ" RightOperand="0" />
+        <RelationalExpression Name="M_86B_FREQ_MUL_GE_ONE" LeftOperand="M.86B::2574_001" Operator="GE" RightOperand="1" />
+        <RelationalExpression Name="M_86B_FREQ_MUL_LE_SEVEN" LeftOperand="M.86B::2574_001" Operator="LE" RightOperand="7" />
+        <RelationalExpression Name="M_86B_BC_EQ_0" LeftOperand="M.86B::2559_002" Operator="EQ" RightOperand="0" />
+        <RelationalExpression Name="M_86B_BC_EQ_1" LeftOperand="M.86B::2559_002" Operator="EQ" RightOperand="1" />
+        <RelationalExpression Name="M_86B_BC_EQ_2" LeftOperand="M.86B::2559_002" Operator="EQ" RightOperand="2" />
+        <RelationalExpression Name="M_86B_BC_EQ_3" LeftOperand="M.86B::2559_002" Operator="EQ" RightOperand="3" />
+        <RelationalExpression Name="M_86B_BC_EQ_4" LeftOperand="M.86B::2559_002" Operator="EQ" RightOperand="4" />
+        <RelationalExpression Name="M_86B_BC_EQ_5" LeftOperand="M.86B::2559_002" Operator="EQ" RightOperand="5" />
+        <RelationalExpression Name="M_86B_BC_EQ_6" LeftOperand="M.86B::2559_002" Operator="EQ" RightOperand="6" />
+        <RelationalExpression Name="M_86B_BC_EQ_7" LeftOperand="M.86B::2559_002" Operator="EQ" RightOperand="7" />
+	</RelationalExpressions>
+
+	<Fields>
+		<Field DFI_DUI="2699_005" Name="MessageNumber" Order="0" BitPosition="0" BitLength="4" DataType="short">
+			<Logical>
+				<GenericValues>
+					<Undefined>
+						<InputData>7</InputData>
+					</Undefined>
+				</GenericValues>
+			</Logical>
+		</Field>
+		<Field DFI_DUI="2567_002" Name="Time Stale" Order="1" BitPosition="4" BitLength="5" DataType="double" >
+			<Numeric>
+				<InputMapping>
+					<Map>
+				    	<UniformDistribution Start="1" End="29" BitCodeStart="1" BitCodeEnd="29" Increment="1" />
+				    </Map>
+				    <Map>
+				    	<UnboundedInterval Boundary="30" Operator="GE" BitCode="30"/>
+				    </Map>
+				</InputMapping>
+				<!--
+				<GenericValues NoStatement="00000" />
+				-->
+				<GenericValues>
+					<NoStatement>00000</NoStatement>
+				</GenericValues>
+			</Numeric>
+		</Field>
+		<Field DFI_DUI="2704_001" Name="Report Source" Order="2" BitPosition="9" BitLength="1" DataType="boolean">
+			<Binary>
+				<DefaultValue>false</DefaultValue>
+			</Binary>
+		</Field>
+		<Field DFI_DUI="2571_001" Name="Bearing Accuracy" Order="3" BitPosition="10" BitLength="2" DataType="short">
+			<Logical>
+				<GenericValues>
+					<NoStatement>00</NoStatement>
+				</GenericValues>
+			</Logical>
+		</Field>
+		<Field DFI_DUI="2529_003" Name="Bearing" Order="4" BitPosition="12" BitLength="9" DataType="double" >
+			<Numeric>
+				<InputMapping>
+					<Map>
+				    	<UniformDistribution Start="0" End="359.717" BitCodeStart="0" BitCodeEnd="511" Increment="0.703125" />
+				    </Map>
+				</InputMapping>
+				<GenericValues>
+					<NoStatement>000000000</NoStatement>
+				</GenericValues>
+			</Numeric>
+		</Field>
+		
+		<Field DFI_DUI="2569_001" Name="Bearing Indicator" Order="5" BitPosition="21" BitLength="1" DataType="boolean">
+			<SelectiveCondition>
+				<And>
+					<Operand>M_86B_RS_EQ_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<Binary>
+				<DefaultValue>true</DefaultValue>
+			</Binary>
+		</Field>
+		
+		<Field DFI_DUI="2572_001" Name="Lock-On/Spy" Order="6" BitPosition="22" BitLength="2" DataType="short">
+			<SelectiveCondition>
+				<And>
+					<Operand>M_86B_RS_EQ_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<Logical>
+				<GenericValues>
+					<Undefined>
+						<InputData>3</InputData>
+					</Undefined>
+					<NoStatement>00</NoStatement>
+				</GenericValues>
+			</Logical>
+		</Field>
+		<Field DFI_DUI="2579_002" Name="Platform Evaluation Confidence" Order="7" BitPosition="21" BitLength="3" DataType="short">
+			<SelectiveCondition>
+				<And>
+					<Operand BooleanNot="!">M_86B_RS_EQ_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<Logical>
+				<GenericValues>
+					<Undefined>
+						<InclusiveRange Start="5" End="7"/>
+					</Undefined>
+					<NoStatement>000</NoStatement>
+				</GenericValues>
+			</Logical>
+		</Field>
+		<Field DFI_DUI="2694_008" Name="Evaluation Switch" Order="8" BitPosition="47" BitLength="1" DataType="boolean">
+			<Binary>
+				<DefaultValue>false</DefaultValue>
+			</Binary>
+		</Field>
+		<Field DFI_DUI="2573_001" Name="Frequency/Frequency Range" Order="10" BitPosition="24" BitLength="14" DataType="long">
+			<SelectiveCondition>
+				<And>
+					<Operand>M_86B_EVSW_EQ_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+            <Numeric>
+                <Switch>
+                    <Case>
+                        <CaseCondition>
+                            <And>
+                                <Operand>M_86B_FREQ_MUL_EQ_ZERO</Operand>
+                            </And>
+                        </CaseCondition>
+                        <InputMapping>
+                            <Map>
+                                <BoundedInterval Start="0" End="249E6" BitCode="1"/>
+                            </Map>
+                            <Map>
+                                <BoundedInterval Start="250E6" End="499E6" BitCode="2"/>
+                            </Map>
+                            <Map>
+                                <BoundedInterval Start="500E6" End="999E6" BitCode="3"/>
+                            </Map>
+                            <Map>
+                                <BoundedInterval Start="1000E6" End="1999E6" BitCode="4"/>
+                            </Map>
+                            <Map>
+                                <BoundedInterval Start="2000E6" End="2999E6" BitCode="5"/>
+                            </Map>
+                            <Map>
+                                <BoundedInterval Start="3000E6" End="3999E6" BitCode="6"/>
+                            </Map>
+                            <Map>
+                                <BoundedInterval Start="4000E6" End="5999E6" BitCode="7"/>
+                            </Map>
+                            <Map>
+                                <BoundedInterval Start="6000E6" End="7999E6" BitCode="8"/>
+                            </Map>
+                            <Map>
+                                <BoundedInterval Start="8000E6" End="9999E6" BitCode="9"/>
+                            </Map>
+                            <Map>
+                                <BoundedInterval Start="10000E6" End="19999E6" BitCode="10"/>
+                            </Map>
+                            <Map>
+                                <BoundedInterval Start="20000E6" End="39999E6" BitCode="11"/>
+                            </Map>
+                            <Map>
+                                <BoundedInterval Start="40000E6" End="59999E6" BitCode="12"/>
+                            </Map>
+                            <Map>
+                                <BoundedInterval Start="60000E6" End="100000E6" BitCode="13"/>
+                            </Map>
+                        </InputMapping>
+                        <GenericValues>
+                           	<Undefined>
+                           		<InclusiveRange Start="14" End="16383"/>
+                           	</Undefined>
+                           	<NoStatement>00000000000000</NoStatement>
+                        </GenericValues>
+                    </Case>
+                    <Case>
+                        <CaseCondition>
+                            <And>
+                                <Operand>M_86B_FREQ_MUL_GE_ONE</Operand>
+                                <Operand>M_86B_FREQ_MUL_LE_SEVEN</Operand>
+                            </And>
+                        </CaseCondition>
+                        <InputMapping>
+                            <Map>
+                                <UniformDistribution Start="1" End="16383" BitCodeStart="1" BitCodeEnd="16383" Increment="1"/>
+                            </Map>
+                        </InputMapping>
+                        <GenericValues>
+                        	<NoStatement>00000000000000</NoStatement>
+                        </GenericValues>
+                    </Case>
+                </Switch>
+            </Numeric>
+		</Field>
+		<Field DFI_DUI="2574_001" Name="Frequency Multiplier" Order="9" BitPosition="38" BitLength="3" DataType="short">
+			<SelectiveCondition>
+				<And>
+					<Operand>M_86B_EVSW_EQ_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<Logical/>
+		</Field>
+		<Field DFI_DUI="2559_002" Name="Broad Classification" Order="11" BitPosition="41" BitLength="3" DataType="short">
+			<SelectiveCondition>
+				<And>
+					<Operand>M_86B_EVSW_EQ_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<Logical>
+				<GenericValues>
+					<Undefined>
+						<InclusiveRange Start="5" End="7"/>
+					</Undefined>
+					<NoStatement>000</NoStatement>
+				</GenericValues>
+			</Logical>
+		</Field>
+		<Field DFI_DUI="2566_002" Name="Amplifying Characteristics" Order="12" BitPosition="44" BitLength="3" DataType="short">
+			<SelectiveCondition>
+				<And>
+					<Operand>M_86B_EVSW_EQ_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<Logical>
+				<Switch>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_86B_BC_EQ_0</Operand>
+							</And>
+						</CaseCondition>
+						<GenericValues>
+							<Illegal>
+								<InclusiveRange Start="1" End = "7"/>
+							</Illegal>
+							<NoStatement>000</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<Or>
+								<Operand>M_86B_BC_EQ_1</Operand>
+								<Operand>M_86B_BC_EQ_2</Operand>
+							</Or>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InputData>7</InputData>
+							</Undefined>
+							<NoStatement>000</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_86B_BC_EQ_3</Operand>
+							</And>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InputData>6</InputData>
+								<InputData>7</InputData>
+							</Undefined>
+							<NoStatement>000</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_86B_BC_EQ_4</Operand>
+							</And>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InputData>5</InputData>
+								<InputData>6</InputData>
+								<InputData>7</InputData>
+							</Undefined>
+							<NoStatement>000</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<Or>
+								<Operand>M_86B_BC_EQ_5</Operand>
+								<Operand>M_86B_BC_EQ_6</Operand>
+								<Operand>M_86B_BC_EQ_7</Operand>
+							</Or>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InclusiveRange Start="0" End = "7"/>
+							</Undefined>
+						</GenericValues>
+					</Case>
+				</Switch>
+			</Logical>
+		</Field>
+
+		<Field DFI_DUI="2577_001" Name="Emitter Number" Order="13" BitPosition="24" BitLength="14" DataType="string">
+			<SelectiveCondition>
+				<And>
+					<Operand BooleanNot="!">M_86B_EVSW_EQ_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<CharacterStream>
+				<String Length="5">
+					<Substring StartPos="0" SubstringLength="1" EncodingStartPos="0" EncodedCharLength="2" Vocabulary="Quadruple" />
+					<Substring StartPos="1" SubstringLength="4" EncodingStartPos="2" EncodedCharLength="3" Vocabulary="Octal" />
+				</String>
+				<GenericValues>
+					<NoStatement>00000000000000</NoStatement>
+				</GenericValues>
+			</CharacterStream>
+		</Field>
+		<Field DFI_DUI="2578_001" Name="Mode Number" Order="14" BitPosition="38" BitLength="6" DataType="short">
+			<SelectiveCondition>
+				<And>
+					<Operand BooleanNot="!">M_86B_EVSW_EQ_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<Logical>
+				<GenericValues>
+					<Undefined>
+						<InputData>0</InputData>
+					</Undefined>
+				</GenericValues>
+			</Logical>
+		</Field>
+		
+		<Field DFI_DUI="2579_003" Name="Confidence" Order="15" BitPosition="44" BitLength="3" DataType="short">
+			<SelectiveCondition>
+				<And>
+					<Operand BooleanNot="!">M_86B_EVSW_EQ_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<Logical>
+				<GenericValues>
+					<NoStatement>000</NoStatement>
+				</GenericValues>
+			</Logical>
+		</Field>
+		
+	</Fields>
+</MessageSpec>

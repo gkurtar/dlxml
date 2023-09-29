@@ -1,0 +1,369 @@
+
+<MessageSpec>
+	<MessageInfo>
+		<MessageNetwork>LINK_11</MessageNetwork>
+		<MessageName>M.5</MessageName>
+		<Identification>
+			<Id BitPosition="0" BitLength="4" Resolution="0101"/>
+		</Identification> 
+	</MessageInfo>
+	<RelationalExpressions>
+		<RelationalExpression Name="M_5_SI_ZERO" LeftOperand="M.5::2694_009" Operator="EQ" RightOperand="0"/>
+    	<RelationalExpression Name="M_5_SI_ONE" LeftOperand="M.5::2694_009" Operator="EQ" RightOperand="1"/>
+    	<RelationalExpression Name="M_5_PT_GE_0" LeftOperand="M.5::2553_001" Operator="GE" RightOperand="0"/>
+    	<RelationalExpression Name="M_5_PT_LE_10" LeftOperand="M.5::2553_001" Operator="LE" RightOperand="10"/>
+    	<RelationalExpression Name="M_5_PT_EQ_0" LeftOperand="M.5::2553_001" Operator="EQ" RightOperand="0"/>
+    	<RelationalExpression Name="M_5_PT_EQ_1" LeftOperand="M.5::2553_001" Operator="EQ" RightOperand="1"/>
+    	<RelationalExpression Name="M_5_PT_EQ_2" LeftOperand="M.5::2553_001" Operator="EQ" RightOperand="2"/>
+    	<RelationalExpression Name="M_5_PT_EQ_3" LeftOperand="M.5::2553_001" Operator="EQ" RightOperand="3"/>
+    	<RelationalExpression Name="M_5_PT_EQ_4" LeftOperand="M.5::2553_001" Operator="EQ" RightOperand="4"/>
+    	<RelationalExpression Name="M_5_PT_EQ_5" LeftOperand="M.5::2553_001" Operator="EQ" RightOperand="5"/>
+    	<RelationalExpression Name="M_5_PT_EQ_6" LeftOperand="M.5::2553_001" Operator="EQ" RightOperand="6"/>
+    	<RelationalExpression Name="M_5_PT_EQ_7" LeftOperand="M.5::2553_001" Operator="EQ" RightOperand="7"/>
+    	<RelationalExpression Name="M_5_PT_EQ_8" LeftOperand="M.5::2553_001" Operator="EQ" RightOperand="8"/>
+    	<RelationalExpression Name="M_5_PT_EQ_9" LeftOperand="M.5::2553_001" Operator="EQ" RightOperand="9"/>
+    	<RelationalExpression Name="M_5_PT_EQ_10" LeftOperand="M.5::2553_001" Operator="EQ" RightOperand="10"/>
+    	<RelationalExpression Name="M_5_PT_EQ_11" LeftOperand="M.5::2553_001" Operator="EQ" RightOperand="11"/>
+    	<RelationalExpression Name="M_5_PT_EQ_12" LeftOperand="M.5::2553_001" Operator="EQ" RightOperand="12"/>
+    	<RelationalExpression Name="M_5_PT_EQ_13" LeftOperand="M.5::2553_001" Operator="EQ" RightOperand="13"/>
+    	<RelationalExpression Name="M_5_PT_EQ_14" LeftOperand="M.5::2553_001" Operator="EQ" RightOperand="14"/>
+    	<RelationalExpression Name="M_5_PT_EQ_15" LeftOperand="M.5::2553_001" Operator="EQ" RightOperand="15"/>
+    	
+    	<!--<RelationalExpression Name="M_5_PT_GE_8" LeftOperand="M.5::2553_001" Operator="GE" RightOperand="8"/>
+    	<RelationalExpression Name="M_5_PT_GE_13" LeftOperand="M.5::2553_001" Operator="GE" RightOperand="13"/>
+    	<RelationalExpression Name="M_5_PT_LE_15" LeftOperand="M.5::2553_001" Operator="LE" RightOperand="15"/>
+    	-->
+    	
+	</RelationalExpressions>
+
+	<Fields>
+		<Field DFI_DUI="2699_005" Name="MessageNumber" Order="0" BitPosition="0" BitLength="4" DataType="short">
+			<Logical>
+				<GenericValues>
+					<Undefined>
+						<InputData>7</InputData>
+					</Undefined>
+				</GenericValues>
+			</Logical>
+		</Field>
+		<Field DFI_DUI="2500_006" Name="Track Number/Address" Order="1" BitPosition="4" BitLength="12" DataType="string" >
+			<CharacterStream>
+				<String Length="4">
+					<Substring StartPos="0" SubstringLength="4" EncodingStartPos="0" EncodedCharLength="3" Vocabulary="Octal" />
+				</String>
+				<GenericValues>
+					<Illegal>
+						<InputData>0000</InputData>
+						<InputData>0077</InputData>
+						<InputData>0177</InputData>
+						<InputData>7777</InputData>
+					</Illegal>
+				</GenericValues>
+			</CharacterStream>
+		</Field>
+		<Field DFI_DUI="2694_009" Name="ScaleIndicator" Order="2" BitPosition="16" BitLength="1" DataType="boolean">
+			<Binary>
+				<DefaultValue>true</DefaultValue>
+			</Binary>
+		</Field>
+		<Field DFI_DUI="2553_001" Name="Point" Order="3" BitPosition="17" BitLength="4" DataType="short">
+			<Logical>
+				<GenericValues>
+					<Undefined>
+						<InputData>11</InputData>
+						<InputData>12</InputData>
+					</Undefined>
+				</GenericValues>
+			</Logical>
+		</Field>
+		<Field DFI_DUI="2554_001" Name="Point Amplify" Order="4" BitPosition="21" BitLength="3" DataType="short">
+			<Logical>
+				<Switch>
+					<Case>
+						<CaseCondition>
+							<Or>
+								<Operand>M_5_PT_EQ_0</Operand>
+								<Operand>M_5_PT_EQ_1</Operand>
+							</Or>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InclusiveRange Start="1" End = "7"/>
+							</Undefined>
+							<NoStatement>000</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<Or>
+								<Operand>M_5_PT_EQ_2</Operand>
+								<Operand>M_5_PT_EQ_4</Operand>
+								<Operand>M_5_PT_EQ_6</Operand>
+								<Operand>M_5_PT_EQ_14</Operand>
+								<Operand>M_5_PT_EQ_15</Operand>
+							</Or>
+						</CaseCondition>
+						<GenericValues>
+							<NoStatement>000</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_5_PT_EQ_3</Operand>
+							</And>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InclusiveRange Start="2" End = "7"/>
+							</Undefined>
+							<NoStatement>000</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_5_PT_EQ_5</Operand>
+							</And>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InputData>4</InputData>
+								<InputData>7</InputData>
+							</Undefined>
+							<NoStatement>000</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_5_PT_EQ_7</Operand>
+							</And>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InclusiveRange Start="4" End = "7"/>
+							</Undefined>
+							<NoStatement>000</NoStatement>
+						</GenericValues>
+					</Case> 
+					<Case>
+						<CaseCondition>
+							<Or>
+								<Operand>M_5_PT_EQ_8</Operand>
+								<Operand>M_5_PT_EQ_9</Operand>
+								<Operand>M_5_PT_EQ_10</Operand>
+							</Or>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InclusiveRange Start="2" End = "7"/>
+							</Undefined>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<Or>
+								<Operand>M_5_PT_EQ_11</Operand>
+								<Operand>M_5_PT_EQ_12</Operand>
+							</Or>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InclusiveRange Start="0" End = "7"/>
+							</Undefined>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_5_PT_EQ_13</Operand>
+							</And>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InputData>7</InputData>
+							</Undefined>
+							<NoStatement>000</NoStatement>
+						</GenericValues>
+					</Case>
+				</Switch>
+			</Logical>
+		</Field>
+		<Field DFI_DUI="2691_003" Name="X Coordinate" Order="5" BitPosition="24" BitLength="12" DataType="double" >
+			<Numeric>
+				<Switch>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_5_SI_ZERO</Operand>
+								<Or>
+									<Operand>M_5_PT_EQ_14</Operand>
+									<Operand>M_5_PT_EQ_15</Operand>
+									<And>
+										<Operand>M_5_PT_GE_0</Operand>
+										<Operand>M_5_PT_LE_10</Operand>
+									</And>
+								</Or>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="511.75" BitCodeStart="0" BitCodeEnd="2047" Increment="0.25" />
+						    </Map>
+						    <Map>
+						    	<UniformDistribution Start="-511.75" End="0" BitCodeStart="2048" BitCodeEnd="4095" Increment="0.25" />
+						    </Map>
+						</InputMapping>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_5_SI_ONE</Operand>
+								<Or>
+									<Operand>M_5_PT_EQ_14</Operand>
+									<Operand>M_5_PT_EQ_15</Operand>
+									<And>
+										<Operand>M_5_PT_GE_0</Operand>
+										<Operand>M_5_PT_LE_10</Operand>
+									</And>
+								</Or>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="31.984375" BitCodeStart="0" BitCodeEnd="2047" Increment="0.015625" />
+						    </Map>
+						    <Map>
+						    	<UniformDistribution Start="-31.984375" End="0" BitCodeStart="2048" BitCodeEnd="4095" Increment="0.015625" />
+						    </Map>
+						</InputMapping>
+					</Case>
+					<Case>
+						<!-- This case could have been merged by adding an operand (M_5_PT_EQ_13)
+						inside the OR of the 1st case statement of the enclosing Switch element,
+						but we added this case for clearness and readability reasons -->
+						<CaseCondition>
+							<And>
+								<Operand>M_5_SI_ZERO</Operand>
+								<Operand>M_5_PT_EQ_13</Operand>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="511.75" BitCodeStart="0" BitCodeEnd="2047" Increment="0.25" />
+						    </Map>
+						    <Map>
+						    	<UniformDistribution Start="-511.75" End="0" BitCodeStart="2048" BitCodeEnd="4095" Increment="0.25" />
+						    </Map>
+						</InputMapping>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_5_SI_ONE</Operand>
+								<Operand>M_5_PT_EQ_13</Operand>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="1023.5" BitCodeStart="0" BitCodeEnd="2047" Increment="0.5" />
+						    </Map>
+						    <Map>
+						    	<UniformDistribution Start="-1023.5" End="0" BitCodeStart="2048" BitCodeEnd="4095" Increment="0.5" />
+						    </Map>
+						</InputMapping>
+					</Case>
+				</Switch>
+			</Numeric>
+		</Field>
+		<Field DFI_DUI="2692_003" Name="Y Coordinate" Order="6" BitPosition="36" BitLength="12" DataType="double" >
+			<Numeric>
+				<Switch>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_5_SI_ZERO</Operand>
+								<Or>
+									<Operand>M_5_PT_EQ_14</Operand>
+									<Operand>M_5_PT_EQ_15</Operand>
+									<And>
+										<Operand>M_5_PT_GE_0</Operand>
+										<Operand>M_5_PT_LE_10</Operand>
+									</And>
+								</Or>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="511.75" BitCodeStart="0" BitCodeEnd="2047" Increment="0.25" />
+						    </Map>
+						    <Map>
+						    	<UniformDistribution Start="-511.75" End="0" BitCodeStart="2048" BitCodeEnd="4095" Increment="0.25" />
+						    </Map>
+						</InputMapping>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_5_SI_ONE</Operand>
+								<Or>
+									<Operand>M_5_PT_EQ_14</Operand>
+									<Operand>M_5_PT_EQ_15</Operand>
+									<And>
+										<Operand>M_5_PT_GE_0</Operand>
+										<Operand>M_5_PT_LE_10</Operand>
+									</And>
+								</Or>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="31.984375" BitCodeStart="0" BitCodeEnd="2047" Increment="0.015625" />
+						    </Map>
+						    <Map>
+						    	<UniformDistribution Start="-31.984375" End="0" BitCodeStart="2048" BitCodeEnd="4095" Increment="0.015625" />
+						    </Map>
+						</InputMapping>
+					</Case>
+					<Case>
+						<!-- This case could have been merged by adding an operand (M_5_PT_EQ_13)
+						inside the OR of the 1st case statement of the enclosing Switch element,
+						but we added this case for clearness and readability reasons -->
+						<CaseCondition>
+							<And>
+								<Operand>M_5_SI_ZERO</Operand>
+								<Operand>M_5_PT_EQ_13</Operand>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="511.75" BitCodeStart="0" BitCodeEnd="2047" Increment="0.25" />
+						    </Map>
+						    <Map>
+						    	<UniformDistribution Start="-511.75" End="0" BitCodeStart="2048" BitCodeEnd="4095" Increment="0.25" />
+						    </Map>
+						</InputMapping>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_5_SI_ONE</Operand>
+								<Operand>M_5_PT_EQ_13</Operand>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="1023.5" BitCodeStart="0" BitCodeEnd="2047" Increment="0.5" />
+						    </Map>
+						    <Map>
+						    	<UniformDistribution Start="-1023.5" End="0" BitCodeStart="2048" BitCodeEnd="4095" Increment="0.5" />
+						    </Map>
+						</InputMapping>
+					</Case>
+				</Switch>
+			</Numeric>
+		</Field>
+		
+	</Fields>
+</MessageSpec>

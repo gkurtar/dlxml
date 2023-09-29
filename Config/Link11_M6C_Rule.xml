@@ -1,0 +1,135 @@
+<MessageSpec>	
+	<MessageInfo>
+		<MessageNetwork>LINK_11</MessageNetwork>
+		<MessageName>M.6C</MessageName>
+		<Identification>
+			<Id BitPosition="0" BitLength="4" Resolution="0110"/>
+			<Id BitPosition="22" BitLength="2" Resolution="10"/>
+		</Identification>
+	</MessageInfo>
+	<RelationalExpressions>
+		<RelationalExpression Name="M_6C_PS_ZERO" LeftOperand="M.6C::2582_001" Operator="EQ" RightOperand="0"/>
+    	<RelationalExpression Name="M_6C_PS_ONE" LeftOperand="M.6C::2582_001" Operator="EQ" RightOperand="1"/>
+    	<RelationalExpression Name="M_6C_PS_TWO" LeftOperand="M.6C::2582_001" Operator="EQ" RightOperand="2"/>
+    </RelationalExpressions>
+
+	<Fields>
+		<Field DFI_DUI="2699_005" Name="MessageNumber" Order="0" BitPosition="0" BitLength="4" DataType="short">
+			<Logical>
+				<GenericValues>
+					<Undefined>
+						<InputData>7</InputData>
+					</Undefined>
+				</GenericValues>
+			</Logical>
+		</Field>
+		
+		<Field DFI_DUI="2500_038" Name="TrackNumber" Order="1" BitPosition="4" BitLength="12" DataType="string" >
+			<CharacterStream>
+				<String Length="4">
+					<Substring StartPos="0" SubstringLength="4" EncodingStartPos="0" EncodedCharLength="3" Vocabulary="Octal" />
+				</String>
+				<GenericValues>
+					<Illegal>
+						<InputData>7777</InputData>
+						<InclusiveRange Start="0" End="177"/>
+					</Illegal>
+				</GenericValues>
+			</CharacterStream>
+		</Field>
+
+		<Field DFI_DUI="2580_001" Name="Jitter" Order="2" BitPosition="16" BitLength="2" DataType="short">
+			<Logical>
+				<GenericValues>
+					<Undefined>
+						<InputData>3</InputData>
+					</Undefined>
+					<NoStatement>00</NoStatement>
+				</GenericValues>
+			</Logical>
+		</Field>
+		
+		<Field DFI_DUI="2698_008" Name="Label" Order="3" BitPosition="22" BitLength="2" DataType="short">
+			<Logical/>
+		</Field>
+		
+		<Field DFI_DUI="2581_001" Name="Scan Type" Order="4" BitPosition="24" BitLength="5" DataType="short">
+			<Logical>
+				<GenericValues>
+					<Undefined>
+						<InputData>30</InputData>
+						<InputData>31</InputData>
+					</Undefined>
+					<NoStatement>00000</NoStatement>
+				</GenericValues>
+			</Logical>
+		</Field>
+		
+		<Field DFI_DUI="2582_001" Name="PRF Scaling" Order="5" BitPosition="29" BitLength="2" DataType="short">
+			<Logical>
+				<GenericValues>
+					<Undefined>
+						<InputData>3</InputData>
+					</Undefined>
+				</GenericValues>
+			</Logical>
+		</Field>
+		
+		<Field DFI_DUI="2583_001" Name="Pulse Repetition Frequency" Order="6" BitPosition="31" BitLength="17" DataType="double">
+			<Numeric>
+				<Switch>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_6C_PS_ZERO</Operand>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="1" End="131070" BitCodeStart="1" BitCodeEnd="131070" Increment="1" />
+						    </Map>
+						    <Map>
+						    	<UnboundedInterval Boundary="131071" Operator="GT" BitCode="131071"/>
+						    </Map>
+						</InputMapping>
+						<GenericValues>
+							<NoStatement>00000000000000000</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_6C_PS_ONE</Operand>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0.1" End="13107.1" BitCodeStart="1" BitCodeEnd="131071" Increment="0.1" />
+						    </Map>
+						</InputMapping>
+						<GenericValues>
+							<NoStatement>00000000000000000</NoStatement>
+						</GenericValues>
+					</Case>
+					
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_6C_PS_TWO</Operand>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0.01" End="1310.71" BitCodeStart="1" BitCodeEnd="131071" Increment="0.01" />
+						    </Map>
+						</InputMapping>
+						<GenericValues>
+							<NoStatement>00000000000000000</NoStatement>
+						</GenericValues>
+					</Case>
+				</Switch>
+			</Numeric>
+		</Field>
+	
+	</Fields>
+</MessageSpec>

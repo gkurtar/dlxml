@@ -1,0 +1,122 @@
+
+
+<MessageSpec>
+<!-- 
+<MessageSpec xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Link11.xsd">
+-->
+	<MessageInfo>
+		<MessageNetwork>LINK_11</MessageNetwork>
+		<MessageName>M.1</MessageName>
+		<Identification>
+			<Id BitPosition="0" BitLength="4" Resolution="0001"/>
+		</Identification> 
+	</MessageInfo>
+	<!-- old version
+	<Expressions> 
+		<Expression Name="DLRPLat_LT_60" Type="binary" LeftOperand="GS::DLRP_Latitude" Operator="LT" RightOperand="1.04719"/> 
+	</Expessions>
+	-->
+	<RelationalExpressions>
+		<RelationalExpression Name="DLRPLat_LT_60" LeftOperand="GS::DLRP_Latitude" Operator="LT" RightOperand="1.04719"/>
+	</RelationalExpressions>
+
+	<Fields>
+		<Field DFI_DUI="2699_005" Name="MessageNumber" Order="0" BitPosition="0" BitLength="4" DataType="short">
+			<Logical>
+				<GenericValues>
+					<Undefined>
+						<InputData>7</InputData>
+					</Undefined>
+				</GenericValues>
+			</Logical>
+		</Field>
+		<Field DFI_DUI="2503_001" Name="ReferencePositionIndicator" Order="1" BitPosition="4" BitLength="1" DataType="boolean">
+			<Binary>
+				<DefaultValue>false</DefaultValue>
+			</Binary>
+		</Field>
+		<Field DFI_DUI="2504_001" Name="SpecialProcessingIndicator" Order="2" BitPosition="5" BitLength="1" DataType="boolean">
+			<Binary>
+				<DefaultValue>false</DefaultValue>
+			</Binary>
+		</Field>
+		<Field DFI_DUI="2694_033" Name="SimulationIndicator" Order="3" BitPosition="6" BitLength="1" DataType="boolean">
+			<Binary>
+				<DefaultValue>false</DefaultValue>
+			</Binary>
+		</Field>
+
+		<Field DFI_DUI="2505_001" Name="DeltaLatitude" Order="4" BitPosition="7" BitLength="17" DataType="double" >
+			<Numeric>
+				<InputMapping>
+                    <Map>
+                        <UniformDistribution Start="0" End="1023.984375" BitCodeStart="0" BitCodeEnd="65535" Increment="0.015625"/>
+                    </Map>
+                    <Map>
+                        <UniformDistribution Start="-1023.984375" End="0" BitCodeStart="65536" BitCodeEnd="131071" Increment="0.015625"/>
+                    </Map>
+				</InputMapping>
+				
+			</Numeric>
+		</Field>
+
+		<Field DFI_DUI="2500_034" Name="PURUAddress" Order="5" BitPosition="24" BitLength="7" DataType="string" >
+			<CharacterStream>
+				<String Length="3">
+					<Substring StartPos="0" SubstringLength="1" EncodingStartPos="0" EncodedCharLength="1" Vocabulary="Dual" />
+                    <Substring StartPos="1" SubstringLength="2" EncodingStartPos="1" EncodedCharLength="3" Vocabulary="Octal" />
+				</String>
+				<GenericValues>
+					<Illegal>
+						<InputData>000</InputData>
+						<InputData>077</InputData>
+					</Illegal>
+				</GenericValues>
+			</CharacterStream>
+		</Field>
+		
+		<Field DFI_DUI="2506_001" Name="DeltaLongitude" Order="6" BitPosition="31" BitLength="17" DataType="double" >
+			<Numeric>
+				<Switch>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>DLRPLat_LT_60</Operand>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="1023.984375" BitCodeStart="0" BitCodeEnd="65535" Increment="0.015625" />
+						    </Map>
+						    <Map>
+						    	<UniformDistribution Start="-1023.984375" End="0" BitCodeStart="65536" BitCodeEnd="131071" Increment="0.015625" />
+						    </Map>
+						</InputMapping>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand BooleanNot="!">DLRPLat_LT_60</Operand>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="2047.96875" BitCodeStart="0" BitCodeEnd="65535" Increment="0.03125"/>
+						    </Map>
+						    <Map>
+						    	<UniformDistribution Start="-2047.96875" End="0" BitCodeStart="65536" BitCodeEnd="131071" Increment="0.03125" />
+						    </Map>
+						</InputMapping>
+					</Case>
+				</Switch>
+			</Numeric>
+		</Field>
+	</Fields>
+</MessageSpec>
+
+<!--<Map>
+    	<OpenRange Boundary="34321.43" Operator="EQ">8191</OpenRange>
+    </Map>
+    <Map>
+		<DI_Value>16384</DI_Value>
+	</Map>-->

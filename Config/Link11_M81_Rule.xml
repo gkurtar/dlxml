@@ -1,0 +1,228 @@
+
+<MessageSpec>
+	<MessageInfo>
+		<MessageNetwork>LINK_11</MessageNetwork>
+		<MessageName>M.81</MessageName>
+		<Identification>
+			<Id BitPosition="0" BitLength="4" Resolution="1000"/>
+		</Identification>
+	</MessageInfo>
+
+	<RelationalExpressions>
+		<RelationalExpression Name="M_81_ENV_SURFACE" LeftOperand="M.81::2510_002" Operator="EQ" RightOperand="0"/>
+		<RelationalExpression Name="M_81_ENV_SUBSURFACE" LeftOperand="M.81::2510_002" Operator="EQ" RightOperand="1"/>
+    	<RelationalExpression Name="M_81_ENV_LAND" LeftOperand="M.81::2510_002" Operator="EQ" RightOperand="2"/>
+    	<RelationalExpression Name="M_81_ENV_AIR" LeftOperand="M.81::2510_002" Operator="EQ" RightOperand="3"/>
+    	<RelationalExpression Name="M_81_SI_ZERO" LeftOperand="M.81::2694_032" Operator="EQ" RightOperand="0"/>
+    	<RelationalExpression Name="M_81_SI_ONE" LeftOperand="M.81::2694_032" Operator="EQ" RightOperand="1"/>
+	</RelationalExpressions>
+
+	<Fields>
+		<Field DFI_DUI="2699_005" Name="MessageNumber" Order="0" BitPosition="0" BitLength="4" DataType="short">
+			<Logical>
+				<GenericValues>
+					<Undefined>
+						<InputData>7</InputData>
+					</Undefined>
+				</GenericValues>
+			</Logical>
+		</Field>
+		<Field DFI_DUI="2500_034" Name="PU/RUAddress" Order="1" BitPosition="4" BitLength="7" DataType="string" >
+			<CharacterStream>
+				<String Length="3">
+					<Substring StartPos="0" SubstringLength="1" EncodingStartPos="0" EncodedCharLength="1" Vocabulary="Dual" />
+					<Substring StartPos="1" SubstringLength="2" EncodingStartPos="1" EncodedCharLength="3" Vocabulary="Octal" />
+				</String>
+				<GenericValues>
+					<Illegal>
+						<InputData>000</InputData>
+						<InputData>077</InputData>
+					</Illegal>
+				</GenericValues>
+			</CharacterStream>
+		</Field>
+		<Field DFI_DUI="2524_001" Name="HelicopterCarrying" Order="2" BitPosition="14" BitLength="1" DataType="boolean">
+			<Binary>
+				<DefaultValue>false</DefaultValue>
+			</Binary>
+		</Field>
+		
+		<Field DFI_DUI="2507_001" Name="Height/Depth" Order="5" BitPosition="16" BitLength="8" DataType="double" >
+			<Numeric>
+				<!-- <Unit>Feet</Unit> -->
+				<Switch>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_81_SI_ZERO</Operand>
+								<Or>
+									<Operand>M_81_ENV_SUBSURFACE</Operand>
+									<Operand>M_81_ENV_LAND</Operand>
+								</Or>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="12700" BitCodeStart="0" BitCodeEnd="254" Increment="50" />
+						    </Map>
+						</InputMapping>
+						<GenericValues>
+							<NoStatement>11111111</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_81_SI_ONE</Operand>
+								<Or>
+									<Operand>M_81_ENV_SUBSURFACE</Operand>
+									<Operand>M_81_ENV_LAND</Operand>
+								</Or>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="6350" BitCodeStart="0" BitCodeEnd="254" Increment="25" />
+						    </Map>
+						</InputMapping>
+						<GenericValues>
+							<NoStatement>11111111</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_81_ENV_AIR</Operand>
+								<Operand>M_81_SI_ZERO</Operand>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="127000" BitCodeStart="0" BitCodeEnd="254" Increment="500" />
+						    </Map>
+						</InputMapping>
+						<GenericValues>
+							<NoStatement>11111111</NoStatement>
+						</GenericValues>
+						<!--  
+						<GenericValues NoStatement="11111111" />
+						-->
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_81_ENV_AIR</Operand>
+								<Operand>M_81_SI_ONE</Operand>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="7937.5" BitCodeStart="0" BitCodeEnd="254" Increment="31.25" />
+						    </Map>
+						</InputMapping>
+						<GenericValues>
+							<NoStatement>11111111</NoStatement>
+						</GenericValues>
+					</Case>
+				</Switch>
+			</Numeric>
+		</Field>
+
+		<Field DFI_DUI="2508_001" Name="X_Dot" Order="6" BitPosition="24" BitLength="8" DataType="double" >
+			<Numeric>
+				<Switch>
+					<Case>
+						<CaseCondition>
+							<Or>
+								<Operand>M_81_ENV_SURFACE</Operand>
+								<Operand>M_81_ENV_SUBSURFACE</Operand>
+							</Or>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="111.62109375" BitCodeStart="0" BitCodeEnd="127" Increment="0.87890625" />
+						    </Map>
+						    <Map>
+						    	<UniformDistribution Start="-111.62109375" End="0" BitCodeStart="128" BitCodeEnd="255" Increment="0.87890625" />
+						    </Map>
+						</InputMapping>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<Or>
+								<Operand>M_81_ENV_AIR</Operand>
+							</Or>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="892.96875" BitCodeStart="0" BitCodeEnd="127" Increment="7.03125" />
+						    </Map>
+						    <Map>
+						    	<UniformDistribution Start="-892.96875" End="0" BitCodeStart="128" BitCodeEnd="255" Increment="7.03125" />
+						    </Map>
+						</InputMapping>
+					</Case>
+				</Switch>
+			</Numeric>
+		</Field>
+		
+		<Field DFI_DUI="2509_001" Name="Y_Dot" Order="7" BitPosition="32" BitLength="8" DataType="double" >
+			<Numeric>
+				<Switch>
+					<Case>
+						<CaseCondition>
+							<Or>
+								<Operand>M_81_ENV_SURFACE</Operand>
+								<Operand>M_81_ENV_SUBSURFACE</Operand>
+							</Or>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="111.62109375" BitCodeStart="0" BitCodeEnd="127" Increment="0.87890625" />
+						    </Map>
+						    <Map>
+						    	<UniformDistribution Start="-111.62109375" End="0" BitCodeStart="128" BitCodeEnd="255" Increment="0.87890625" />
+						    </Map>
+						</InputMapping>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<Or>
+								<Operand>M_81_ENV_AIR</Operand>
+							</Or>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="892.96875" BitCodeStart="0" BitCodeEnd="127" Increment="7.03125" />
+						    </Map>
+						    <Map>
+						    	<UniformDistribution Start="-892.96875" End="0" BitCodeStart="128" BitCodeEnd="255" Increment="7.03125" />
+						    </Map>
+						</InputMapping>
+					</Case>
+				</Switch>
+			</Numeric>
+		</Field>
+
+		<Field DFI_DUI="2510_002" Name="EnvironmentCategory" Order="3" BitPosition="40" BitLength="2" DataType="short">
+			<Logical/>
+		</Field>
+		
+		<Field DFI_DUI="2511_001" Name="UnitType" Order="8" BitPosition="42" BitLength="4" DataType="short">
+			<Logical/>
+		</Field>
+		
+		<Field DFI_DUI="2512_001" Name="MissileUnit" Order="9" BitPosition="46" BitLength="1" DataType="boolean">
+			<Binary>
+				<DefaultValue>false</DefaultValue>
+			</Binary>
+		</Field>
+		
+		<Field DFI_DUI="2694_032" Name="ScaleIndicator" Order="4" BitPosition="47" BitLength="1" DataType="boolean">
+			<Binary>
+				<DefaultValue>false</DefaultValue>
+			</Binary>
+		</Field>
+
+	</Fields>
+</MessageSpec>

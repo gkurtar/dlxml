@@ -1,0 +1,340 @@
+
+<MessageSpec>
+	<MessageInfo>
+		<MessageNetwork>LINK_11</MessageNetwork>
+		<MessageName>M.82</MessageName>
+		<Identification>
+			<Id BitPosition="0" BitLength="4" Resolution="1000"/>
+		</Identification> 
+	</MessageInfo>
+	
+	<RelationalExpressions>
+		<!--  Scale Indicator field of the Last M.2 message is used in this message -->
+		<RelationalExpression Name="M_2_SI_ZERO" LeftOperand="M.2::2694_002" Operator="EQ" RightOperand="0"/>
+    	<RelationalExpression Name="M_2_SI_ONE" LeftOperand="M.2::2694_002" Operator="EQ" RightOperand="1"/>
+    	<!--  Switch field of this message  -->
+    	<RelationalExpression Name="M_82_SWITCH_ZERO" LeftOperand="M.82::2694_013" Operator="EQ" RightOperand="0"/>
+    	<RelationalExpression Name="M_82_SWITCH_ONE" LeftOperand="M.82::2694_013" Operator="EQ" RightOperand="1"/>
+    	<!--  Identity and Pri Id Amp fields of the Last M.2 message is used in this message -->
+    	<RelationalExpression Name="M_2_ID_EQ_0" LeftOperand="M.2::2513_001" Operator="EQ" RightOperand="0"/>
+    	<RelationalExpression Name="M_2_ID_EQ_1" LeftOperand="M.2::2513_001" Operator="EQ" RightOperand="1"/>
+    	<RelationalExpression Name="M_2_ID_EQ_2" LeftOperand="M.2::2513_001" Operator="EQ" RightOperand="2"/>
+    	<RelationalExpression Name="M_2_ID_EQ_3" LeftOperand="M.2::2513_001" Operator="EQ" RightOperand="3"/>
+    	<RelationalExpression Name="M_2_PRIAMP_EQ_0" LeftOperand="M.2::2514_001" Operator="EQ" RightOperand="0"/>
+    	<RelationalExpression Name="M_2_PRIAMP_EQ_1" LeftOperand="M.2::2514_001" Operator="EQ" RightOperand="1"/>
+    	<RelationalExpression Name="M_2_PRIAMP_EQ_2" LeftOperand="M.2::2514_001" Operator="EQ" RightOperand="2"/>
+    	<RelationalExpression Name="M_2_PRIAMP_EQ_3" LeftOperand="M.2::2514_001" Operator="EQ" RightOperand="3"/>
+	</RelationalExpressions>
+
+	<Fields>
+		<Field DFI_DUI="2699_005" Name="MessageNumber" Order="0" BitPosition="0" BitLength="4" DataType="short">
+			<Logical>
+				<GenericValues>
+					<Undefined>
+						<InputData>7</InputData>
+					</Undefined>
+				</GenericValues>
+			</Logical>
+		</Field>
+		
+		<Field DFI_DUI="2500_036" Name="Track Number" Order="1" BitPosition="4" BitLength="12" DataType="string" >
+			<CharacterStream>
+				<String Length="4">
+					<Substring StartPos="0" SubstringLength="4" EncodingStartPos="0" EncodedCharLength="3" Vocabulary="Octal" />
+				</String>
+				<GenericValues>
+					<Illegal>
+						<InputData>0000</InputData>
+						<InputData>0077</InputData>
+						<InputData>0176</InputData>
+						<InputData>0177</InputData>
+						<InputData>7777</InputData>
+					</Illegal>
+				</GenericValues>
+			</CharacterStream>
+		</Field>
+
+		<Field DFI_DUI="2507_002" Name="Height" Order="2" BitPosition="16" BitLength="8" DataType="double" >
+			<Numeric>
+				<Switch>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_2_SI_ZERO</Operand>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="127000" BitCodeStart="0" BitCodeEnd="254" Increment="500" />
+						    </Map>
+						</InputMapping>
+						<!--  <GenericValues NoStatement="11111111"/> -->
+						
+						<GenericValues>
+						   	<NoStatement>11111111</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_2_SI_ONE</Operand>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="7937.5" BitCodeStart="0" BitCodeEnd="254" Increment="31.25" />
+						    </Map>
+						</InputMapping>
+						<GenericValues>
+							<NoStatement>11111111</NoStatement>
+						</GenericValues>
+					</Case>
+				</Switch>
+			</Numeric>
+		</Field>
+
+		<Field DFI_DUI="2694_013" Name="Switch" Order="3" BitPosition="40" BitLength="1" DataType="boolean">
+			<Binary>
+				<DefaultValue>false</DefaultValue>
+			</Binary>
+		</Field>
+
+		<Field DFI_DUI="2508_002" Name="X Dot" Order="4" BitPosition="24" BitLength="8" DataType="double" >
+		  	<SelectiveCondition>
+				<And>
+					<Operand>M_82_SWITCH_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<Numeric>
+				<Switch>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_2_SI_ZERO</Operand>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="3571.875" BitCodeStart="0" BitCodeEnd="127" Increment="28.125" />
+						    </Map>
+						    <Map>
+						    	<UniformDistribution Start="-3571.875" End="0" BitCodeStart="128" BitCodeEnd="255" Increment="28.125" />
+						    </Map>
+						</InputMapping>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_2_SI_ONE</Operand>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="446.484375" BitCodeStart="0" BitCodeEnd="127" Increment="3.515625" />
+						    </Map>
+						    <Map>
+						    	<UniformDistribution Start="-446.484375" End="0" BitCodeStart="128" BitCodeEnd="255" Increment="3.515625" />
+						    </Map>
+						</InputMapping>
+					</Case>
+				</Switch>
+			</Numeric>
+		</Field>
+		
+		
+		<Field DFI_DUI="2509_002" Name="Y Dot" Order="5" BitPosition="32" BitLength="8" DataType="double" >
+			<SelectiveCondition>
+				<And>
+					<Operand>M_82_SWITCH_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<Numeric>
+				<Switch>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_2_SI_ZERO</Operand>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="3571.875" BitCodeStart="0" BitCodeEnd="127" Increment="28.125" />
+						    </Map>
+						    <Map>
+						    	<UniformDistribution Start="-3571.875" End="0" BitCodeStart="128" BitCodeEnd="255" Increment="28.125" />
+						    </Map>
+						</InputMapping>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_2_SI_ONE</Operand>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="446.484375" BitCodeStart="0" BitCodeEnd="127" Increment="3.515625" />
+						    </Map>
+						    <Map>
+						    	<UniformDistribution Start="-446.484375" End="0" BitCodeStart="128" BitCodeEnd="255" Increment="3.515625" />
+						    </Map>
+						</InputMapping>
+					</Case>
+				</Switch>
+			</Numeric>
+		</Field>
+		
+		<Field DFI_DUI="2517_003" Name="Time" Order="6" BitPosition="24" BitLength="11" DataType="long" >
+			<SelectiveCondition>
+				<And>
+					<Operand>M_82_SWITCH_ONE</Operand>
+				</And>
+			</SelectiveCondition>
+			<Logical/>
+		</Field>
+		
+		<Field DFI_DUI="2519_001" Name="Size" Order="7" BitPosition="41" BitLength="2" DataType="short">
+			<Logical>
+				<GenericValues>
+					<NoStatement>00</NoStatement>
+				</GenericValues>
+			</Logical>
+		</Field>
+		
+		<Field DFI_DUI="2520_001" Name="Identity Amplification" Order="8" BitPosition="43" BitLength="3" DataType="short">
+			<Logical>
+				<Switch>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_2_ID_EQ_0</Operand>
+								<Operand>M_2_PRIAMP_EQ_0</Operand>
+							</And>
+						</CaseCondition>
+						<GenericValues>
+							<Illegal>
+								<InclusiveRange Start="1" End = "7"/>
+							</Illegal>
+							<NoStatement>000</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_2_ID_EQ_0</Operand>
+								<Operand>M_2_PRIAMP_EQ_1</Operand>
+							</And>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InputData>1</InputData>
+							</Undefined>
+							<NoStatement>000</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_2_ID_EQ_0</Operand>
+								<Operand>M_2_PRIAMP_EQ_2</Operand>
+							</And>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InputData>1</InputData>
+								<InputData>7</InputData>
+							</Undefined>
+							<NoStatement>000</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<Or>
+								<And>
+									<Operand>M_2_ID_EQ_0</Operand>
+									<Operand>M_2_PRIAMP_EQ_3</Operand>
+								</And>
+								<And>
+									<Operand>M_2_ID_EQ_1</Operand>
+									<Or>
+										<Operand>M_2_PRIAMP_EQ_0</Operand>
+										<Operand>M_2_PRIAMP_EQ_1</Operand>
+									</Or>
+								</And>
+								<And>
+									<Operand>M_2_ID_EQ_2</Operand>
+									<Operand>M_2_PRIAMP_EQ_0</Operand>
+								</And>
+								<And>
+									<Operand>M_2_ID_EQ_3</Operand>
+									<Or>
+										<Operand>M_2_PRIAMP_EQ_0</Operand>
+										<Operand>M_2_PRIAMP_EQ_1</Operand>
+									</Or>
+								</And>
+							</Or>
+						</CaseCondition>
+						<GenericValues>
+							<NoStatement>000</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<Or>
+								<And>
+									<Operand>M_2_ID_EQ_1</Operand>
+									<Or>
+										<Operand>M_2_PRIAMP_EQ_2</Operand>
+										<Operand>M_2_PRIAMP_EQ_3</Operand>
+									</Or>
+								</And>
+								<And>
+									<Operand>M_2_ID_EQ_2</Operand>
+									<Or>
+										<Operand>M_2_PRIAMP_EQ_1</Operand>
+										<Operand>M_2_PRIAMP_EQ_2</Operand>
+										<Operand>M_2_PRIAMP_EQ_3</Operand>
+									</Or>
+								</And>
+								<And>
+									<Operand>M_2_ID_EQ_3</Operand>
+									<Operand>M_2_PRIAMP_EQ_3</Operand>
+								</And>
+							</Or>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InclusiveRange Start="0" End="7"/>
+							</Undefined>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_2_ID_EQ_3</Operand>
+								<Operand>M_2_PRIAMP_EQ_2</Operand>
+							</And>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InputData>6</InputData>
+								<InputData>7</InputData>
+							</Undefined>
+							<NoStatement>000</NoStatement>
+						</GenericValues>
+					</Case>
+				</Switch>
+            </Logical>
+		</Field>
+		
+		<Field DFI_DUI="2521_001" Name="Height Source" Order="9" BitPosition="46" BitLength="2" DataType="short">
+			<Logical>
+				<GenericValues>
+					<NoStatement>00</NoStatement>
+				</GenericValues>
+				<!-- <GenericValues NoStatement="00" /> -->
+			</Logical>
+		</Field>
+
+	</Fields>
+</MessageSpec>

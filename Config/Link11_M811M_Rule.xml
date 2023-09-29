@@ -1,0 +1,277 @@
+
+<MessageSpec>
+	<MessageInfo>
+		<MessageNetwork>LINK_11</MessageNetwork>
+		<MessageName>M.811M</MessageName>
+		<Identification>
+			<Id BitPosition="0" BitLength="4" Resolution="1000"/>
+		</Identification> 
+	</MessageInfo>
+	<RelationalExpressions>
+		<!--  Category field of the Last M.11M message is used in this message -->
+		<RelationalExpression Name="M_11M_CAT_0" LeftOperand="M.11M::2596_003" Operator="EQ" RightOperand="0"/>
+		<RelationalExpression Name="M_11M_CAT_1" LeftOperand="M.11M::2596_003" Operator="EQ" RightOperand="1"/>
+		<RelationalExpression Name="M_11M_CAT_2" LeftOperand="M.11M::2596_003" Operator="EQ" RightOperand="2"/>
+		<RelationalExpression Name="M_11M_CAT_3" LeftOperand="M.11M::2596_003" Operator="EQ" RightOperand="3"/>
+		<RelationalExpression Name="M_11M_CAT_4" LeftOperand="M.11M::2596_003" Operator="EQ" RightOperand="4"/>
+		<RelationalExpression Name="M_11M_CAT_5" LeftOperand="M.11M::2596_003" Operator="EQ" RightOperand="5"/>
+		<RelationalExpression Name="M_11M_CAT_6" LeftOperand="M.11M::2596_003" Operator="EQ" RightOperand="6"/>
+		<RelationalExpression Name="M_11M_CAT_7" LeftOperand="M.11M::2596_003" Operator="EQ" RightOperand="7"/>		
+		<RelationalExpression Name="M_811M_SW_ZERO" LeftOperand="M.811M::2694_012" Operator="EQ" RightOperand="0"/>
+    	<RelationalExpression Name="M_811M_SW_ONE" LeftOperand="M.811M::2694_012" Operator="EQ" RightOperand="1"/>
+	</RelationalExpressions>
+	<Fields>
+		<Field DFI_DUI="2699_005" Name="MessageNumber" Order="0"
+			BitPosition="0" BitLength="4" DataType="short">
+			<Logical>
+				<GenericValues>
+					<Undefined>
+						<InputData>7</InputData>
+					</Undefined>
+				</GenericValues>
+			</Logical>
+		</Field>
+		<Field DFI_DUI="2639_001" Name="Mission" Order="1"
+			BitPosition="4" BitLength="6" DataType="short">
+			<Logical>
+				<Switch>
+					<Case>
+						<CaseCondition>
+							<Or>
+								<Operand>M_11M_CAT_0</Operand>
+								<Operand>M_11M_CAT_6</Operand>
+								<Operand>M_11M_CAT_7</Operand>
+							</Or>
+						</CaseCondition>
+						<GenericValues>
+							<Illegal>
+								<InclusiveRange Start="1" End="63"/>
+							</Illegal>
+							<NoStatement>000000</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_11M_CAT_1</Operand>
+							</And>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InclusiveRange Start="21" End="50"/>
+							</Undefined>
+							<NoStatement>000000</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_11M_CAT_2</Operand>
+							</And>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InclusiveRange Start="11" End="50"/>
+							</Undefined>
+							<NoStatement>000000</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_11M_CAT_3</Operand>
+							</And>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InclusiveRange Start="9" End="50"/>
+							</Undefined>
+							<NoStatement>000000</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_11M_CAT_4</Operand>
+							</And>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InclusiveRange Start="1" End="62"/>
+							</Undefined>
+							<NoStatement>000000</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_11M_CAT_5</Operand>
+							</And>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InclusiveRange Start="6" End="50"/>
+							</Undefined>
+							<NoStatement>000000</NoStatement>
+						</GenericValues>
+					</Case>
+				</Switch>
+			</Logical>
+		</Field>
+		<Field DFI_DUI="2640_001" Name="Current Activity" Order="2"
+			BitPosition="10" BitLength="6" DataType="short">
+			<Logical>
+				<Switch>
+					<Case>
+						<CaseCondition>
+							<Or>
+								<Operand>M_11M_CAT_0</Operand>
+								<Operand>M_11M_CAT_6</Operand>
+								<Operand>M_11M_CAT_7</Operand>
+							</Or>
+						</CaseCondition>
+						<GenericValues>
+							<Illegal>
+								<InclusiveRange Start="1" End="63"/>
+							</Illegal>
+							<NoStatement>000000</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_11M_CAT_1</Operand>
+							</And>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InclusiveRange Start="28" End="50"/>
+							</Undefined>
+							<NoStatement>000000</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_11M_CAT_2</Operand>
+							</And>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InclusiveRange Start="48" End="50"/>
+							</Undefined>
+							<NoStatement>000000</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_11M_CAT_3</Operand>
+							</And>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InclusiveRange Start="31" End="50"/>
+							</Undefined>
+							<NoStatement>000000</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_11M_CAT_4</Operand>
+							</And>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InputData>11</InputData>
+								<InclusiveRange Start="23" End="50"/>
+							</Undefined>
+							<NoStatement>000000</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_11M_CAT_5</Operand>
+							</And>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InclusiveRange Start="3" End="62"/>
+							</Undefined>
+							<NoStatement>000000</NoStatement>
+						</GenericValues>
+					</Case>
+				</Switch>
+			</Logical>
+		</Field>
+		<Field DFI_DUI="2641_001" Name="Operational Status" Order="3"
+			BitPosition="19" BitLength="4" DataType="short">
+			<Logical>
+				<GenericValues>
+					<Undefined>
+						<InclusiveRange Start="10" End="14"/>
+					</Undefined>
+					<NoStatement>0000</NoStatement>
+				</GenericValues>
+			</Logical>
+		</Field>
+		<Field DFI_DUI="2694_012" Name="Switch" Order="4"
+			BitPosition="23" BitLength="1" DataType="boolean">
+			<Binary>
+				<DefaultValue>false</DefaultValue>
+			</Binary>
+		</Field>
+		<Field DFI_DUI="2500_028" Name="Track Number 2" Order="5"
+			BitPosition="24" BitLength="12" DataType="string" >
+			<CharacterStream>
+				<String Length="4">
+					<Substring StartPos="0" SubstringLength="4"
+					EncodingStartPos="0" EncodedCharLength="3" Vocabulary="Octal" />
+				</String>
+				<GenericValues>
+					<Illegal>
+						<InputData>0077</InputData>
+						<InputData>0177</InputData>
+					</Illegal>
+					<NoStatement>000000000000</NoStatement>
+				</GenericValues>
+			</CharacterStream>
+		</Field>
+		<Field DFI_DUI="2500_029" Name="Controlling Unit" Order="6"
+			BitPosition="36" BitLength="12" DataType="string" >
+			<SelectiveCondition>
+				<And>
+					<Operand>M_811M_SW_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<CharacterStream>
+				<String Length="4">
+					<Substring StartPos="0" SubstringLength="4"
+					EncodingStartPos="0" EncodedCharLength="3" Vocabulary="Octal" />
+				</String>
+				<GenericValues>
+					<Illegal>
+						<InputData>0077</InputData>
+						<InputData>0177</InputData>
+					</Illegal>
+					<NoStatement>000000000000</NoStatement>
+				</GenericValues>
+			</CharacterStream>
+		</Field>
+		<Field DFI_DUI="2643_001" Name="Discrete Identifier" Order="7"
+			BitPosition="36" BitLength="12" DataType="short" >
+			<SelectiveCondition>
+				<And>
+					<Operand>M_811M_SW_ONE</Operand>
+				</And>
+			</SelectiveCondition>
+			<Logical>
+				<GenericValues>
+					<NoStatement>000000000000</NoStatement>
+				</GenericValues>
+			</Logical>
+		</Field>
+	</Fields>
+</MessageSpec>

@@ -1,0 +1,195 @@
+
+<MessageSpec>
+	<MessageInfo>
+		<MessageNetwork>LINK_11</MessageNetwork>
+		<MessageName>M.85</MessageName>
+		<Identification>
+			<Id BitPosition="0" BitLength="4" Resolution="1000"/>
+		</Identification> 
+	</MessageInfo>
+	<RelationalExpressions>
+		<RelationalExpression Name="M_85_SW_ZERO" LeftOperand="M.85::2694_003" Operator="EQ" RightOperand="0"/>
+    	<RelationalExpression Name="M_85_SW_ONE" LeftOperand="M.85::2694_003" Operator="EQ" RightOperand="1"/>
+    	<RelationalExpression Name="M_85_HDSW_ZERO" LeftOperand="M.85::2694_006" Operator="EQ" RightOperand="0"/>
+    	<!-- As well as zero value M_85_HDSW_ONE could have also been defined, but
+    	using negation to achieve that value is preferred inside this message -->
+	</RelationalExpressions>
+
+	<Fields>
+		<Field DFI_DUI="2699_005" Name="MessageNumber" Order="0" BitPosition="0" BitLength="4" DataType="short">
+			<Logical>
+				<GenericValues>
+					<Undefined>
+						<InputData>7</InputData>
+					</Undefined>
+				</GenericValues>
+			</Logical>
+		</Field>
+		
+		<Field DFI_DUI="2500_007" Name="Related Track Number/Track Number" Order="1" BitPosition="4" BitLength="12" DataType="string" >
+			<CharacterStream>
+				<String Length="4">
+					<Substring StartPos="0" SubstringLength="4" EncodingStartPos="0" EncodedCharLength="3" Vocabulary="Octal" />
+				</String>
+				<GenericValues>
+					<Illegal>
+						<InputData>0000</InputData>
+						<InputData>0077</InputData>
+						<InputData>0177</InputData>
+						<InputData>7777</InputData>
+					</Illegal>
+				</GenericValues>
+			</CharacterStream>
+		</Field>
+		
+		<Field DFI_DUI="2694_003" Name="Switch" Order="2" BitPosition="16" BitLength="1" DataType="boolean">
+			<Binary>
+				<DefaultValue>false</DefaultValue>
+			</Binary>
+		</Field>
+		
+		<Field DFI_DUI="2555_001" Name="Reference" Order="3" BitPosition="17" BitLength="2" DataType="short">
+			<Logical>
+				<GenericValues>
+					<Undefined>
+						<InputData>3</InputData>
+					</Undefined>
+					<NoStatement>00</NoStatement>
+				</GenericValues>
+			</Logical>
+		</Field>
+		
+		<Field DFI_DUI="2508_003" Name="X Dot" Order="4" BitPosition="24" BitLength="8" DataType="double" >
+			<SelectiveCondition>
+				<And>
+					<Operand>M_85_SW_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<Numeric>
+				<InputMapping>
+                    <Map>
+                        <UniformDistribution Start="0" End="111.62109375" BitCodeStart="0" BitCodeEnd="127" Increment="0.87890625"/>
+                    </Map>
+                    <Map>
+                        <UniformDistribution Start="-111.62109375" End="0" BitCodeStart="128" BitCodeEnd="255" Increment="0.87890625"/>
+                    </Map>
+				</InputMapping>
+			</Numeric>
+		</Field>
+		
+		<Field DFI_DUI="2509_003" Name="Y Dot" Order="5" BitPosition="32" BitLength="8" DataType="double" >
+			<SelectiveCondition>
+				<And>
+					<Operand>M_85_SW_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<Numeric>
+				<InputMapping>
+                    <Map>
+                        <UniformDistribution Start="0" End="111.62109375" BitCodeStart="0" BitCodeEnd="127" Increment="0.87890625"/>
+                    </Map>
+                    <Map>
+                        <UniformDistribution Start="-111.62109375" End="0" BitCodeStart="128" BitCodeEnd="255" Increment="0.87890625"/>
+                    </Map>
+				</InputMapping>
+			</Numeric>
+		</Field>
+		
+		<Field DFI_DUI="2517_002" Name="Minutes" Order="8" BitPosition="24" BitLength="6" DataType="short" >
+			<SelectiveCondition>
+				<And>
+					<Operand>M_85_SW_ONE</Operand>
+				</And>
+			</SelectiveCondition>
+			<Logical>
+				<GenericValues>
+					<Illegal>
+						<InclusiveRange Start="60" End="62"/>
+					</Illegal>
+					<NoStatement>111111</NoStatement>
+				</GenericValues>
+			</Logical>
+		</Field>
+		
+		<Field DFI_DUI="2517_001" Name="Hours" Order="7" BitPosition="30" BitLength="5" DataType="short" >
+			<SelectiveCondition>
+				<And>
+					<Operand>M_85_SW_ONE</Operand>
+				</And>
+			</SelectiveCondition>
+			<Logical>
+				<GenericValues>
+					<Illegal>
+						<InclusiveRange Start="24" End="30"/>
+					</Illegal>
+					<NoStatement>11111</NoStatement>
+				</GenericValues>
+			</Logical>
+		</Field>
+		
+		<Field DFI_DUI="2694_023" Name="TimeSwitch" Order="6" BitPosition="35" BitLength="1" DataType="boolean">
+			<SelectiveCondition>
+				<And>
+					<Operand>M_85_SW_ONE</Operand>
+				</And>
+			</SelectiveCondition>
+			<Binary>
+				<DefaultValue>true</DefaultValue>
+			</Binary>
+		</Field>
+		
+		<Field DFI_DUI="2694_006" Name="Height/Depth Switch" Order="9" BitPosition="44" BitLength="1" DataType="boolean">
+			<SelectiveCondition>
+				<And>
+					<Operand>M_85_SW_ONE</Operand>
+				</And>
+			</SelectiveCondition>
+			<Binary>
+				<DefaultValue>true</DefaultValue>
+			</Binary>
+		</Field>
+
+		<Field DFI_DUI="2507_003" Name="Height/Depth" Order="10" BitPosition="36" BitLength="8" DataType="double" >
+			<SelectiveCondition>
+				<And>
+					<Operand>M_85_SW_ONE</Operand>
+				</And>
+			</SelectiveCondition>
+			<Numeric>
+				<Switch>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_85_HDSW_ZERO</Operand>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="127000" BitCodeStart="0" BitCodeEnd="254" Increment="500" />
+						    </Map>
+						</InputMapping>
+						<GenericValues>
+							<NoStatement>11111111</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand BooleanNot="!">M_85_HDSW_ZERO</Operand>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="12700" BitCodeStart="0" BitCodeEnd="254" Increment="50" />
+						    </Map>
+						</InputMapping>
+						<GenericValues>
+							<NoStatement>11111111</NoStatement>
+						</GenericValues>
+					</Case>
+				</Switch>
+			</Numeric>
+		</Field>
+		
+	</Fields>
+</MessageSpec>

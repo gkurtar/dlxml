@@ -1,0 +1,86 @@
+<MessageSpec>
+	<MessageInfo>
+		<MessageNetwork>LINK_11</MessageNetwork>
+		<MessageName>M.6B</MessageName>
+		<Identification>
+			<Id BitPosition="0" BitLength="4" Resolution="0110"/>
+			<Id BitPosition="22" BitLength="2" Resolution="01"/>
+		</Identification>
+	</MessageInfo>
+
+	<Fields>
+		<Field DFI_DUI="2699_005" Name="MessageNumber" Order="0" BitPosition="0" BitLength="4" DataType="short">
+			<Logical>
+				<GenericValues>
+					<Undefined>
+						<InputData>7</InputData>
+					</Undefined>
+				</GenericValues>
+			</Logical>
+		</Field>
+		
+		<Field DFI_DUI="2500_037" Name="TrackNumber" Order="1" BitPosition="4" BitLength="12" DataType="string" >
+			<CharacterStream>
+				<String Length="4">
+					<Substring StartPos="0" SubstringLength="4" EncodingStartPos="0" EncodedCharLength="3" Vocabulary="Octal" />
+				</String>
+				<GenericValues>
+					<Illegal>
+						<InclusiveRange Start="0" End="177"/> 
+						<!--  <InputData>7777</InputData> -->
+					</Illegal>
+					<!--  <NoStatement>000000000000</NoStatement> -->
+				</GenericValues>
+			</CharacterStream>
+		</Field>
+	
+		<Field DFI_DUI="2568_001" Name="FixOrBearing" Order="2" BitPosition="16" BitLength="1" DataType="boolean">
+			<Binary>
+				<DefaultValue>false</DefaultValue>
+			</Binary>
+		</Field>
+		
+		<Field DFI_DUI="2560_002" Name="ThreatEvaluation" Order="3" BitPosition="17" BitLength="2" DataType="short">
+			<Logical>
+			</Logical>
+		</Field>
+		
+		<Field DFI_DUI="2561_002" Name="Platform" Order="4" BitPosition="19" BitLength="3" DataType="short">
+			<Logical>
+				<GenericValues>
+					<NoStatement>000</NoStatement>
+				</GenericValues>
+			</Logical>
+		</Field>
+		
+		<Field DFI_DUI="2698_008" Name="Label" Order="5" BitPosition="22" BitLength="2" DataType="short">
+			<Logical/>
+		</Field>
+		
+		<Field DFI_DUI="2691_004" Name="XCoordinate" Order="6" BitPosition="24" BitLength="12" DataType="double" >
+			<Numeric>
+				<InputMapping>
+					<Map>
+				    	<UniformDistribution Start="0" End="511.75" BitCodeStart="0" BitCodeEnd="2047" Increment="0.25" />
+				    </Map>
+				    <Map>
+				    	<UniformDistribution Start="-511.75" End="0" BitCodeStart="2048" BitCodeEnd="4095" Increment="0.25" />
+				    </Map>
+				</InputMapping>
+			</Numeric>
+		</Field>
+		
+		<Field DFI_DUI="2692_004" Name="YCoordinate" Order="7" BitPosition="36" BitLength="12" DataType="double" >
+			<Numeric>
+				<InputMapping>
+					<Map>
+				    	<UniformDistribution Start="0" End="511.75" BitCodeStart="0" BitCodeEnd="2047" Increment="0.25" />
+				    </Map>
+				    <Map>
+				    	<UniformDistribution Start="-511.75" End="0" BitCodeStart="2048" BitCodeEnd="4095" Increment="0.25" />
+				    </Map>
+				</InputMapping>
+			</Numeric>
+		</Field>
+	</Fields>
+</MessageSpec>

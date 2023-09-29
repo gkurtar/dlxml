@@ -1,0 +1,182 @@
+
+<!-- 
+<MessageSpec xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Link11.xsd">
+-->
+<MessageSpec>
+	<MessageInfo>
+		<MessageNetwork>LINK_11</MessageNetwork>
+		<MessageName>M.2</MessageName>
+		<Identification>
+			<Id BitPosition="0" BitLength="4" Resolution="0010"/>
+		</Identification> 
+	</MessageInfo>
+	<RelationalExpressions>
+		<RelationalExpression Name="M_2_SI_ZERO" LeftOperand="M.2::2694_002" Operator="EQ" RightOperand="0"/>
+    	<RelationalExpression Name="M_2_SI_ONE" LeftOperand="M.2::2694_002" Operator="EQ" RightOperand="1"/>
+    	<RelationalExpression Name="M_2_ID_ONE" LeftOperand="M.2::2513_001" Operator="EQ" RightOperand="1"/>
+    	<RelationalExpression Name="M_2_ID_TWO" LeftOperand="M.2::2513_001" Operator="EQ" RightOperand="2"/>
+    	<RelationalExpression Name="M_2_ID_THREE" LeftOperand="M.2::2513_001" Operator="EQ" RightOperand="3"/>
+	</RelationalExpressions>
+
+	<Fields>
+		<Field DFI_DUI="2699_005" Name="MessageNumber" Order="0" BitPosition="0" BitLength="4" DataType="short">
+			<Logical>
+				<GenericValues>
+					<Undefined>
+						<InputData>7</InputData>
+					</Undefined>
+				</GenericValues>
+			</Logical>
+		</Field>
+		
+		<Field DFI_DUI="2500_003" Name="Track Number" Order="1" BitPosition="4" BitLength="12" DataType="string" >
+			<CharacterStream>
+				<String Length="4">
+					<Substring StartPos="0" SubstringLength="4" EncodingStartPos="0" EncodedCharLength="3" Vocabulary="Octal" />
+				</String>
+				<GenericValues>
+					<Illegal>
+						<InputData>0000</InputData>
+						<InputData>0077</InputData>
+						<InputData>0176</InputData>
+						<InputData>0177</InputData>
+						<InputData>7777</InputData>
+					</Illegal>
+				</GenericValues>
+			</CharacterStream>
+		</Field>
+		
+		<Field DFI_DUI="2513_001" Name="Identity" Order="2" BitPosition="16" BitLength="2" DataType="short">
+			<Logical/>
+		</Field>
+		
+		<Field DFI_DUI="2514_001" Name="Primary Identity Amplification" Order="3" BitPosition="18" BitLength="2" DataType="short">
+			<Logical>
+				<Switch>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_2_ID_ONE</Operand>
+							</And>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InputData>2</InputData>
+								<InputData>3</InputData>
+							</Undefined>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_2_ID_TWO</Operand>
+							</And>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InclusiveRange Start="1" End="3" />
+							</Undefined>
+							<NoStatement>00</NoStatement>
+						</GenericValues>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_2_ID_THREE</Operand>
+							</And>
+						</CaseCondition>
+						<GenericValues>
+							<Undefined>
+								<InputData>3</InputData>
+							</Undefined>
+						</GenericValues>
+					</Case>
+				</Switch>
+			</Logical>
+		</Field>
+		
+		<Field DFI_DUI="2694_002" Name="Scale Indicator" Order="4" BitPosition="20" BitLength="1" DataType="boolean">
+			<Binary>
+				<DefaultValue>false</DefaultValue>
+			</Binary>
+		</Field>
+		
+		<Field DFI_DUI="2515_001" Name="Track Quality" Order="5" BitPosition="21" BitLength="3" DataType="short">
+			<Logical/>
+		</Field>
+
+		<Field DFI_DUI="2691_001" Name="X Coordinate" Order="6" BitPosition="24" BitLength="12" DataType="double" >
+			<Numeric>
+				<Switch>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_2_SI_ZERO</Operand>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="511.75" BitCodeStart="0" BitCodeEnd="2047" Increment="0.25" />
+						    </Map>
+						    <Map>
+						    	<UniformDistribution Start="-511.75" End="0" BitCodeStart="2048" BitCodeEnd="4095" Increment="0.25" />
+						    </Map>
+						</InputMapping>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_2_SI_ONE</Operand>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="31.984375" BitCodeStart="0" BitCodeEnd="2047" Increment="0.015625" />
+						    </Map>
+						    <Map>
+						    	<UniformDistribution Start="-31.84375" End="0" BitCodeStart="2048" BitCodeEnd="4095" Increment="0.015625" />
+						    </Map>
+						</InputMapping>
+					</Case>
+				</Switch>
+			</Numeric>
+		</Field>
+		
+		<Field DFI_DUI="2692_001" Name="Y Coordinate" Order="7" BitPosition="36" BitLength="12" DataType="double" >
+			<Numeric>
+				<Switch>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_2_SI_ZERO</Operand>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="511.75" BitCodeStart="0" BitCodeEnd="2047" Increment="0.25" />
+						    </Map>
+						    <Map>
+						    	<UniformDistribution Start="-511.75" End="0" BitCodeStart="2048" BitCodeEnd="4095" Increment="0.25" />
+						    </Map>
+						</InputMapping>
+					</Case>
+					<Case>
+						<CaseCondition>
+							<And>
+								<Operand>M_2_SI_ONE</Operand>
+							</And>
+						</CaseCondition>
+						<InputMapping>
+							<Map>
+						    	<UniformDistribution Start="0" End="31.984375" BitCodeStart="0" BitCodeEnd="2047" Increment="0.015625" />
+						    </Map>
+						    <Map>
+						    	<UniformDistribution Start="-31.84375" End="0" BitCodeStart="2048" BitCodeEnd="4095" Increment="0.015625" />
+						    </Map>
+						</InputMapping>
+					</Case>
+				</Switch>
+			</Numeric>
+		</Field>
+	</Fields>
+</MessageSpec>

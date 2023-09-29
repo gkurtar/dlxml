@@ -1,0 +1,98 @@
+<MessageSpec>
+	<MessageInfo>
+		<MessageNetwork>LINK_11</MessageNetwork>
+		<MessageName>M.86C</MessageName>
+		<Identification>
+			<Id BitPosition="0" BitLength="4" Resolution="1000"/>
+		</Identification>
+	</MessageInfo>
+	
+	<RelationalExpressions>
+		<RelationalExpression Name="M_86C_ARP_SW_ZERO" LeftOperand="M.86C::2694_010" Operator="EQ" RightOperand="0"/>
+	</RelationalExpressions>
+
+	<Fields>
+		<Field DFI_DUI="2699_005" Name="MessageNumber" Order="0" BitPosition="0" BitLength="4" DataType="short">
+			<Logical>
+				<GenericValues>
+					<Undefined>
+						<InputData>7</InputData>
+					</Undefined>
+				</GenericValues>
+			</Logical>
+		</Field>
+		
+		<Field DFI_DUI="2584_001" Name="Polarization" Order="1" BitPosition="4" BitLength="3" DataType="short">
+			<Logical>
+				<GenericValues>
+					<Undefined>
+						<InclusiveRange Start="6" End="7"/>
+					</Undefined>
+					<NoStatement>000</NoStatement>
+				</GenericValues>
+			</Logical>
+		</Field>
+		
+		<Field DFI_DUI="2585_001" Name="Pulse Width" Order="2" BitPosition="24" BitLength="13" DataType="double" >
+			<Numeric>
+				<InputMapping>
+					<Map>
+				    	<UniformDistribution Start="0.1" End="819.1" BitCodeStart="1" BitCodeEnd="8191" Increment="0.1" />
+				    </Map>
+				</InputMapping>
+				<GenericValues>
+					<NoStatement>0000000000000</NoStatement>
+				</GenericValues>
+				
+			</Numeric>
+		</Field>
+		
+		<Field DFI_DUI="2694_010" Name="ARP Switch" Order="3" BitPosition="47" BitLength="1" DataType="boolean">
+			<Binary>
+				<DefaultValue>true</DefaultValue>
+			</Binary>
+		</Field>
+		
+		<Field DFI_DUI="2586_001" Name="Antenna Rotation Period" Order="4" BitPosition="37" BitLength="10" DataType="double">
+			<SelectiveCondition>
+				<And>
+					<Operand>M_86C_ARP_SW_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<Numeric>
+				<InputMapping>
+					<Map>
+				    	<UniformDistribution Start="0.125" End="127.750" BitCodeStart="1" BitCodeEnd="1022" Increment="0.125" />
+				    </Map>
+				    <Map>
+				    	<UnboundedInterval Boundary="127.750" Operator="GT" BitCode="1023" />
+				    </Map>
+				</InputMapping>
+				<GenericValues>
+					<NoStatement>0000000000</NoStatement>
+				</GenericValues>
+			</Numeric>
+		</Field>
+		
+		<Field DFI_DUI="2587_001" Name="Scan Rate" Order="5" BitPosition="37" BitLength="10" DataType="long">
+			<SelectiveCondition>
+				<And>
+					<Operand BooleanNot="!">M_86C_ARP_SW_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<Numeric>
+				<InputMapping>
+					<Map>
+				    	<UniformDistribution Start="1" End="1022" BitCodeStart="1" BitCodeEnd="1022" Increment="1" />
+				    </Map>
+				    <Map>
+				    	<UnboundedInterval Boundary="1023" Operator="GE" BitCode="1023" />
+				    </Map>
+				</InputMapping>
+				<GenericValues>
+					<NoStatement>0000000000</NoStatement>
+				</GenericValues>
+			</Numeric>
+		</Field>
+	</Fields>
+</MessageSpec>

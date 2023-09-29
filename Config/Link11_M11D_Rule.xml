@@ -1,0 +1,140 @@
+
+
+<MessageSpec>
+	<MessageInfo>
+		<MessageNetwork>LINK_11</MessageNetwork>
+		<MessageName>M.11D</MessageName>
+		<Identification>
+			<Id BitPosition="0" BitLength="4" Resolution="1011"/>
+			<Id BitPosition="4" BitLength="4" Resolution="0011"/>
+		</Identification> 
+	</MessageInfo>
+	<RelationalExpressions>
+		<RelationalExpression Name="M_11D_TR_ZERO" LeftOperand="M.11D::2631_001" Operator="EQ" RightOperand="0"/>
+    	<RelationalExpression Name="M_11D_TR_ONE" LeftOperand="M.11D::2631_001" Operator="EQ" RightOperand="1"/>
+		<RelationalExpression Name="M_11D_SW_ZERO" LeftOperand="M.11D::2694_011" Operator="EQ" RightOperand="0"/>
+    	<RelationalExpression Name="M_11D_SW_ONE" LeftOperand="M.11D::2694_011" Operator="EQ" RightOperand="1"/>
+	</RelationalExpressions>
+
+	<Fields>
+		<Field DFI_DUI="2699_005" Name="MessageNumber" Order="0"
+			BitPosition="0" BitLength="4" DataType="short">
+			<Logical>
+				<GenericValues>
+					<Undefined>
+						<InputData>7</InputData>
+					</Undefined>
+				</GenericValues>
+			</Logical>
+		</Field>
+		<Field DFI_DUI="2698_006" Name="Label" Order="1"
+			BitPosition="4" BitLength="4" DataType="short">
+			<Logical/>
+		</Field>
+		<Field DFI_DUI="2500_052" Name="Track Number" Order="2"
+			BitPosition="8" BitLength="12" DataType="string" >
+			<CharacterStream>
+				<String Length="4">
+					<Substring StartPos="0" SubstringLength="4"
+					EncodingStartPos="0" EncodedCharLength="3" Vocabulary="Octal" />
+				</String>
+				<GenericValues>
+					<Illegal>
+						<InputData>0000</InputData>
+						<InputData>0077</InputData>
+						<InputData>0176</InputData>
+						<InputData>0177</InputData>
+						<InputData>7777</InputData>
+					</Illegal>
+				</GenericValues>
+			</CharacterStream>
+		</Field>
+		<Field DFI_DUI="2694_011" Name="Switch" Order="3"
+			BitPosition="20" BitLength="1" DataType="boolean">
+			<Binary>
+				<DefaultValue>true</DefaultValue>
+			</Binary>
+		</Field>
+		<Field DFI_DUI="2630_001" Name="Mode IV Indicator" Order="4"
+			BitPosition="21" BitLength="2" DataType="short">
+			<Logical/>
+		</Field>
+		<Field DFI_DUI="2631_001" Name="Type Report" Order="5"
+			BitPosition="23" BitLength="1" DataType="boolean">
+			<Binary>
+				<DefaultValue>false</DefaultValue>
+			</Binary>
+		</Field>
+		<Field DFI_DUI="2600_002" Name="Mode II Code" Order="6"
+			BitPosition="24" BitLength="12" DataType="string" >
+			<SelectiveCondition>
+				<And>
+					<Operand>M_11D_TR_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<CharacterStream>
+				<String Length="4">
+					<Substring StartPos="0" SubstringLength="4" EncodingStartPos="0"
+					EncodedCharLength="3" Vocabulary="Octal" />
+				</String>
+				<GenericValues>
+					<NoStatement>000000000000</NoStatement>
+				</GenericValues>
+			</CharacterStream>
+		</Field>
+		<Field DFI_DUI="2600_001" Name="Mode I Code" Order="7"
+			BitPosition="42" BitLength="6" DataType="string" >
+			<SelectiveCondition>
+				<And>
+					<Operand>M_11D_TR_ZERO</Operand>
+					<Operand>M_11D_SW_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<CharacterStream>
+				<String Length="2">
+					<Substring StartPos="0" SubstringLength="1" EncodingStartPos="0"
+					EncodedCharLength="3" Vocabulary="Octal" />
+					<Substring StartPos="1" SubstringLength="1" EncodingStartPos="4"
+					EncodedCharLength="2" Vocabulary="Quadruple" />
+				</String>
+				<GenericValues>
+					<NoStatement>000000</NoStatement>
+				</GenericValues>
+			</CharacterStream>
+		</Field>
+		<Field DFI_DUI="2600_003" Name="Mode III Code" Order="8"
+			BitPosition="36" BitLength="12" DataType="string" >
+			<SelectiveCondition>
+				<And>
+					<Operand>M_11D_TR_ZERO</Operand>
+					<Operand>M_11D_SW_ONE</Operand>
+				</And>
+			</SelectiveCondition>
+			<CharacterStream>
+				<String Length="4">
+					<Substring StartPos="0" SubstringLength="4" EncodingStartPos="0"
+					EncodedCharLength="3" Vocabulary="Octal" />
+				</String>
+				<GenericValues>
+					<NoStatement>000000000000</NoStatement>
+				</GenericValues>
+			</CharacterStream>
+		</Field>
+		<Field DFI_DUI="2632_001" Name="Special Code" Order="9"
+			BitPosition="24" BitLength="12" DataType="string" >
+			<SelectiveCondition>
+				<And>
+					<Operand>M_11D_TR_ONE</Operand>
+					<Operand>M_11D_SW_ZERO</Operand>
+				</And>
+			</SelectiveCondition>
+			<CharacterStream>
+				<String Length="4">
+					<Substring StartPos="0" SubstringLength="4" EncodingStartPos="0"
+					EncodedCharLength="3" Vocabulary="Octal" />
+				</String>
+			</CharacterStream>
+		</Field>
+		
+	</Fields>
+</MessageSpec>
