@@ -1,1 +1,55 @@
 
+<?xml version="1.0"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<xsd:element name="VocabularyList">
+		<xsd:complexType>
+			<xsd:sequence>
+				
+				<xsd:element name="Vocabulary" maxOccurs="unbounded">
+					<xsd:complexType>
+					
+						<xsd:sequence>
+							<xsd:element name="Entry"  maxOccurs="unbounded">
+								<xsd:complexType>
+									<xsd:attribute name="DataItem" use="required">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:string">
+												<xsd:length value="1"/>
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:attribute>
+									<xsd:attribute name="BitCode" use="required">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:normalizedString">
+												<xsd:pattern value="([0-1])+"></xsd:pattern>
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:attribute>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+						
+						<xsd:attribute name="Name" type="xsd:normalizedString" use="required"/>
+						<!--  This attribute was added to support error handling in DLXML,
+						//and is not implemented in current design 
+						//when an undefined vocabulary key or value is requested,  one of the
+						//enums which represent error levels are reported as errors
+						<xsd:attribute name="ReportErrorAs" use="optional">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:normalizedString">
+									<xsd:enumeration value="Illegal"/>
+									<xsd:enumeration value="Undefined"/>
+									<xsd:enumeration value="Invalid"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:attribute>
+						-->
+						
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>
