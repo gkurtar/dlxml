@@ -1,0 +1,248 @@
+
+<Message Network="LINK_11" Name="M.1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:noNamespaceSchemaLocation="InputData.xsd">
+	<Data DFI_DUI="2699_005" >1</Data>
+	<Data DFI_DUI="2503_001" >1</Data>
+	<Data DFI_DUI="2504_001" >1</Data>
+	<Data DFI_DUI="2694_033" >0</Data>
+	<Data DFI_DUI="2505_001" >751.430</Data>
+	<Data DFI_DUI="2500_034" >137</Data>
+	<Data DFI_DUI="2506_001" >706.9843</Data>
+</Message>
+
+<Message Network="LINK_11" Name="M.81"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:noNamespaceSchemaLocation="InputData.xsd">
+	<Data DFI_DUI="2699_005" Name="MessageNumber">8</Data>
+	<Data DFI_DUI="2500_034" Name="PURUAddress">036</Data>
+	<Data DFI_DUI="2524_001" Name="HelicopterCarrying">1</Data>
+	<Data DFI_DUI="2507_001" Name="HeightDepth">8331.98</Data>
+	<Data DFI_DUI="2508_001" Name="XDot">-891.421</Data>
+	<Data DFI_DUI="2509_001" Name="YDot">782.902</Data>
+	<Data DFI_DUI="2510_002" Name="EnvironmentCategory">3</Data>
+	<Data DFI_DUI="2511_001" Name="UnitType">12</Data>
+	<Data DFI_DUI="2512_001" Name="MissileType">1</Data>
+	<Data DFI_DUI="2694_032" Name="ScaleIndicator">0</Data>
+</Message>
+
+<Message Network="LINK_11" Name="M.2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:noNamespaceSchemaLocation="InputData.xsd">
+	<Data DFI_DUI="2699_005" Name="MessageNumber">2</Data>
+	<Data DFI_DUI="2500_003" Name="Track Number">4036</Data>
+	<Data DFI_DUI="2513_001" Name="Identity">1</Data>
+	<Data DFI_DUI="2514_001" Name="PrimIdAmp">1</Data>
+	<Data DFI_DUI="2694_002" Name="ScaleInd">0</Data>
+	<Data DFI_DUI="2515_001" Name="TrackQlty">5</Data>
+	<Data DFI_DUI="2691_001" Name="XCdt">324.345</Data>
+	<Data DFI_DUI="2692_001" Name="YCdt">115.543</Data>
+</Message>
+
+<Message Network="LINK_11" Name="M.82"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:noNamespaceSchemaLocation="InputData.xsd">
+	<Data DFI_DUI="2699_005" Name="MessageNumber">8</Data>
+	<Data DFI_DUI="2500_036" Name="Track Number">4036</Data>
+	<Data DFI_DUI="2507_002" Name="height">334.55</Data>
+	<Data DFI_DUI="2508_002" Name="XDot">324.345</Data>
+	<Data DFI_DUI="2509_002" Name="YDot">115.543</Data>
+	<Data DFI_DUI="2694_013" Name="switch">0</Data>
+	<Data DFI_DUI="2519_001" Name="size">2</Data>
+	<Data DFI_DUI="2520_001" Name="id_amp">5</Data>
+	<Data DFI_DUI="2521_001" Name="HeightSrc">1</Data>
+</Message>
+
+<Message Network="LINK_11" Name="M.3">
+	<Data DFI_DUI="2699_005" Name="Message Number" >3</Data>
+	<Data DFI_DUI="2500_003" Name="Track Number">0277</Data>
+	<Data DFI_DUI="2513_004" Name="Identity">3</Data>
+	<Data DFI_DUI="2514_002" Name="Primary Id Amp">2</Data>
+	<Data DFI_DUI="2694_017" Name="Scale Indicator">0</Data>
+	<Data DFI_DUI="2515_002" Name="Track Quality">5</Data>
+	<Data DFI_DUI="2691_002" Name="X Coordinate">11</Data>
+	<Data DFI_DUI="2692_002" Name="Y Coordinate">31.9828</Data>
+</Message>
+
+<Message Network="LINK_11" Name="M.83">
+	<Data DFI_DUI="2699_005" Name="Message Number">8</Data>
+	<Data DFI_DUI="2500_036" Name="Track Number">1543</Data>
+	<Data DFI_DUI="2522_001" Name="Unit Capability">8</Data>
+	<Data DFI_DUI="2523_001" Name="Current Mission">5</Data>
+	<Data DFI_DUI="2508_003" Name="X Dot">111.356</Data>
+	<Data DFI_DUI="2509_003" Name="Y Dot">110.422</Data>
+	<Data DFI_DUI="2517_003" Name="Time">0</Data>
+	<Data DFI_DUI="2694_013" Name="Switch">0</Data>
+	<Data DFI_DUI="2519_001" Name="Size">2</Data>
+	<Data DFI_DUI="2520_002" Name="Identity Amplification">4</Data>
+	<Data DFI_DUI="2524_001" Name="Helicopter Carrying">0</Data>
+</Message>
+
+<Message Network="LINK_11" Name="M.5">
+	<Data DFI_DUI="2699_005" Name="Message Number" >5</Data>
+	<Data DFI_DUI="2500_006" Name="Track Number">1543</Data>
+	<Data DFI_DUI="2694_009" Name="Scale Indicator">1</Data>
+	<Data DFI_DUI="2553_001" Name="Point">13</Data>
+	<Data DFI_DUI="2554_001" Name="Point Amplify">4</Data>
+	<Data DFI_DUI="2691_003" Name="X Coordinate" >541</Data>
+	<Data DFI_DUI="2692_003" Name="Y Coordinate">06.9843</Data>
+</Message>
+
+<Message Network="LINK_11" Name="M.85">
+	<Data DFI_DUI="2699_005" Name="Message Number">8</Data>
+	<Data DFI_DUI="2500_007" Name="Related TN/Track Number">0277</Data>
+	<Data DFI_DUI="2694_003" Name="Switch">1</Data>
+	<Data DFI_DUI="2555_001" Name="Reference">2</Data>
+	<Data DFI_DUI="2508_003" Name="XDot">111.332</Data>
+	<Data DFI_DUI="2509_003" Name="YDot">34</Data>
+	<Data DFI_DUI="2517_002" Name="Minutes">14</Data>
+	<Data DFI_DUI="2517_001" Name="Hours">22</Data>
+	<Data DFI_DUI="2694_023" Name="Time Switch">1</Data>
+	<Data DFI_DUI="2507_003" Name="Height/Depth">12700</Data>
+	<Data DFI_DUI="2694_006" Name="Height/Depth Switch">1</Data>
+</Message>
+
+<Message Network="LINK_11" Name="M.6B"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:noNamespaceSchemaLocation="InputData.xsd">
+	<Data DFI_DUI="2699_005" Name="MessageNumber">6</Data>
+	<Data DFI_DUI="2500_037" Name="Track Number">3325</Data>
+	<Data DFI_DUI="2568_001" Name="ForB">1</Data>
+	<Data DFI_DUI="2560_002" Name="ThreatEvaluation">2</Data>
+	<Data DFI_DUI="2561_002" Name="Platform">5</Data>
+	<Data DFI_DUI="2698_008" Name="Label">1</Data>			
+	<Data DFI_DUI="2691_004" Name="X_Coord">235.752</Data>
+	<Data DFI_DUI="2692_004" Name="Y_Coord">112.779</Data>
+</Message>
+
+<Message Network="LINK_11" Name="M.86B">
+	<Data DFI_DUI="2699_005" Name="MessageNumber">8</Data>
+	<Data DFI_DUI="2567_002" Name="Time Stale">31</Data>
+	<Data DFI_DUI="2704_001" Name="RS">1</Data>
+	<Data DFI_DUI="2571_001" Name="BearingAccuracy">1</Data>
+	<Data DFI_DUI="2529_003" Name="Bearing">315.456</Data>
+	<Data DFI_DUI="2569_001" Name="Bearing Indicator">1</Data>
+	<Data DFI_DUI="2572_001" Name="LockOn/Spy">2</Data>
+	<Data DFI_DUI="2579_002" Name="PEC">4</Data>
+	<Data DFI_DUI="2573_001" Name="Frequency/FreqRange">2533</Data>
+	<Data DFI_DUI="2574_001" Name="FrequencyMultiplier">2</Data>
+	<Data DFI_DUI="2559_002" Name="BroadClassification">3</Data>
+	<Data DFI_DUI="2566_002" Name="AmplifyingChars">2</Data>
+	<Data DFI_DUI="2577_001" Name="Emitter Number">36372</Data>
+	<Data DFI_DUI="2578_001" Name="Mode Number">2</Data>
+	<Data DFI_DUI="2579_003" Name="Confidence">1</Data>
+	<Data DFI_DUI="2694_008" Name="ES">0</Data>
+</Message>
+
+
+<Message Network="LINK_11" Name="M.6C">
+	<Data DFI_DUI="2699_005" Name="Message Number">6</Data>
+	<Data DFI_DUI="2500_038" Name="Track Number">7775</Data>
+	<Data DFI_DUI="2580_001" Name="Jitter">2</Data>
+	<Data DFI_DUI="2698_008" Name="Label">2</Data>
+	<Data DFI_DUI="2581_001" Name="Scan Type">15</Data>
+	<Data DFI_DUI="2582_001" Name="Prf Scaling">0</Data>
+	<Data DFI_DUI="2583_001" Name="Pulse Rep Freq">131008.1</Data>
+</Message>
+
+<Message Network="LINK_11" Name="M.86C">
+	<Data DFI_DUI="2699_005" Name="Message Number">8</Data>
+	<Data DFI_DUI="2584_001" Name="Polarization">3</Data>
+	<Data DFI_DUI="2585_001" Name="Pulse Width">819.1</Data>
+	<Data DFI_DUI="2586_001" Name="Antenna Rotation Period">0.125</Data>
+	<Data DFI_DUI="2694_010" Name="Arp Switch">0</Data>
+	<Data DFI_DUI="2587_001" Name="Scan Rate">1023</Data>
+</Message>
+
+<Message Network="LINK_11" Name="M.9D">
+	<Data DFI_DUI="2699_005" Name="Message Number">9</Data>
+	<Data DFI_DUI="2698_006" Name="Label">3</Data>
+	<Data DFI_DUI="2500_016" Name="Track Number Two">16</Data>
+	<Data DFI_DUI="2604_001" Name="Reception Quality 1">7</Data>
+	<Data DFI_DUI="2500_015" Name="Track Number One">42</Data>
+	<Data DFI_DUI="2694_027" Name="Switch">0</Data>
+	<Data DFI_DUI="2604_004" Name="Reception Quality 4">6</Data>
+	<Data DFI_DUI="2500_018" Name="Track Number 4">14</Data>
+	<Data DFI_DUI="2604_003" Name="Reception Quality 3">5</Data>
+	<Data DFI_DUI="2500_017" Name="Track Number 3">63</Data>
+	<Data DFI_DUI="2604_002" Name="Reception Quality 2">5</Data>
+	<Data DFI_DUI="2605_001" Name="Net Cycle Time">63</Data>
+</Message>
+
+<Message Network="LINK_11" Name="M.9E">
+	<Data DFI_DUI="2699_005" Name="Message Number">9</Data>
+	<Data DFI_DUI="2698_006" Name="Label">4</Data>
+	<Data DFI_DUI="2500_053" Name="Track Number">5337</Data>
+	<Data DFI_DUI="2595_003" Name="Action">7</Data>
+	<Data DFI_DUI="2500_047" Name="Link 4 Address">03247</Data>
+	<Data DFI_DUI="2609_001" Name="Voice Call Sign">PP43</Data>
+	<Data DFI_DUI="2610_001" Name="Voice Control Frequency">2452</Data>
+	<Data DFI_DUI="2500_022" Name="Link1 Nato Track Number">KB234</Data>
+	<Data DFI_DUI="2694_031" Name="Switch (depends on action)">1</Data>
+	<Data DFI_DUI="2500_048" Name="19-Bit Track Number">KG457</Data>
+	<Data DFI_DUI="2610_003" Name="Link 4 Control Frequency">5462</Data>
+	<Data DFI_DUI="2612_001" Name="Mission Number">875951</Data>
+	<Data DFI_DUI="2500_021" Name="ATDL-1 Track Number">QA775</Data>
+</Message>
+
+<Message Network="LINK_11" Name="M.11D">
+	<Data DFI_DUI="2699_005" Name="Message Number">11</Data>
+	<Data DFI_DUI="2698_006" Name="Label">3</Data>
+	<Data DFI_DUI="2500_052" Name="Track Number">5337</Data>
+	<Data DFI_DUI="2694_011" Name="Switch">0</Data>
+	<Data DFI_DUI="2630_001" Name="ModeIV Indicator">3</Data>
+	<Data DFI_DUI="2631_001" Name="Type Report">0</Data>
+	<Data DFI_DUI="2600_002" Name="Mode II Code">5643</Data>
+	<Data DFI_DUI="2600_001" Name="Mode I Code">41</Data>
+	<Data DFI_DUI="2600_003" Name="Mode III Code">0000</Data>
+	<Data DFI_DUI="2632_001" Name="Special Code">7772</Data>
+</Message>
+
+<Message Network="LINK_11" Name="M.11M">
+	<Data DFI_DUI="2699_005" Name="Message Number">11</Data>
+	<Data DFI_DUI="2698_006" Name="Label">12</Data>
+	<Data DFI_DUI="2504_001" Name="Special Processing indicator">1</Data>
+	<Data DFI_DUI="2500_027" Name="Track Number">7717</Data>
+	<Data DFI_DUI="2596_003" Name="Category">3</Data>
+	<Data DFI_DUI="2636_001" Name="Nationality/Alliance">2</Data>
+	<Data DFI_DUI="2638_001" Name="Specific Type">63</Data>
+	<Data DFI_DUI="2637_001" Name="General Type">14</Data>
+	<Data DFI_DUI="2500_043" Name="PU/RU Source">071</Data>
+</Message>
+
+<Message Network="LINK_11" Name="M.811M">
+	<Data DFI_DUI="2699_005" Name="Message Number">8</Data>
+	<Data DFI_DUI="2500_027" Name="Track Number">7717</Data>
+	<Data DFI_DUI="2639_001" Name="Mission">3</Data>
+	<Data DFI_DUI="2640_001" Name="Current Activity">63</Data>
+	<Data DFI_DUI="2641_001" Name="Operational Status">5</Data>
+	<Data DFI_DUI="2694_012" Name="Switch">0</Data>
+	<Data DFI_DUI="2500_028" Name="Track Number-2">4653</Data>
+	<Data DFI_DUI="2500_029" Name="Controlling Unit">5542</Data>
+	<Data DFI_DUI="2643_001" Name="Discrete identifier">3989</Data>
+</Message>
+
+<Message Network="LINK_11" Name="M.12.31">
+	<Data DFI_DUI="2699_005" Name="Message Number">12</Data>
+	<Data DFI_DUI="2644_001" Name="System indicator">31</Data>
+	<Data DFI_DUI="2646_001" Name="Request Response">1</Data>
+	<Data DFI_DUI="2502_003" Name="Counter">6576</Data>
+	<Data DFI_DUI="2517_014" Name="Greenwich Mean Time">86400</Data>
+</Message>
+
+<Message Network="LINK_11" Name="M.15">
+	<Data DFI_DUI="2699_005" Name="MessageNumber">15</Data>
+	<Data DFI_DUI="2500_044" Name="TN Addresse">037</Data>
+	<Data DFI_DUI="2656_002" Name="TWA">1</Data>
+	<Data DFI_DUI="2657_001" Name="Command">18</Data>
+	<Data DFI_DUI="2658_001" Name="Weapon Type">3</Data>
+	<Data DFI_DUI="2589_003" Name="Receipt/Compliance">4</Data>
+	<Data DFI_DUI="2500_049" Name="Command Amplifier/Originator">0000</Data>
+	<Data DFI_DUI="2500_033" Name="TN Target">0067</Data>
+	<Data DFI_DUI="2537_001" Name="Duty Assignment">35</Data>
+	<Data DFI_DUI="2518_001" Name="DAFA">9</Data>
+	<Data DFI_DUI="2517_007" Name="Impact Type">50</Data>
+	<Data DFI_DUI="2725_001" Name="Number of Missiles">4</Data>
+	<Data DFI_DUI="2500_045" Name="TN Target">0437</Data>
+</Message>
+

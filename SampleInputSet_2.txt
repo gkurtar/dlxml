@@ -1,0 +1,80 @@
+
+<Message Network="LINK_11" Name="M.1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:noNamespaceSchemaLocation="InputData.xsd">
+	<Data DFI_DUI="2699_005" >1</Data>
+	<Data DFI_DUI="2503_001" >1</Data>
+	<Data DFI_DUI="2504_001" >1</Data>
+	<Data DFI_DUI="2694_033" >0</Data>
+	<Data DFI_DUI="2505_001" >751.430</Data>
+	<Data DFI_DUI="2500_034" >137</Data>
+	<Data DFI_DUI="2506_001" >706.9843</Data>
+</Message>
+
+<Message Network="LINK_11" Name="M.81"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:noNamespaceSchemaLocation="InputData.xsd">
+	<Data DFI_DUI="2699_005" Name="MessageNumber">8</Data>
+	<Data DFI_DUI="2500_034" Name="PURUAddress">036</Data>
+	<Data DFI_DUI="2524_001" Name="HelicopterCarrying">1</Data>
+	<Data DFI_DUI="2507_001" Name="HeightDepth">8331.98</Data>
+	<Data DFI_DUI="2508_001" Name="XDot">-891.421</Data>
+	<Data DFI_DUI="2509_001" Name="YDot">782.902</Data>
+	<Data DFI_DUI="2510_002" Name="EnvironmentCategory">3</Data>
+	<Data DFI_DUI="2511_001" Name="UnitType">12</Data>
+	<Data DFI_DUI="2512_001" Name="MissileType">1</Data>
+	<Data DFI_DUI="2694_032" Name="ScaleIndicator">0</Data>
+</Message>
+
+<Message Network="LINK_11" Name="M.2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:noNamespaceSchemaLocation="InputData.xsd">
+	<Data DFI_DUI="2699_005" Name="MessageNumber">2</Data>
+	<Data DFI_DUI="2500_003" Name="Track Number">4036</Data>
+	<Data DFI_DUI="2513_001" Name="Identity">1</Data>
+	<Data DFI_DUI="2514_001" Name="PrimIdAmp">1</Data>
+	<Data DFI_DUI="2694_002" Name="ScaleInd">0</Data>
+	<Data DFI_DUI="2515_001" Name="TrackQlty">5</Data>
+	<Data DFI_DUI="2691_001" Name="XCdt">324.345</Data>
+	<Data DFI_DUI="2692_001" Name="YCdt">115.543</Data>
+</Message>
+
+<Message Network="LINK_11" Name="M.82"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:noNamespaceSchemaLocation="InputData.xsd">
+	<Data DFI_DUI="2699_005" Name="MessageNumber">8</Data>
+	<Data DFI_DUI="2500_036" Name="Track Number">4036</Data>
+	<Data DFI_DUI="2507_002" Name="height">334.55</Data>
+	<Data DFI_DUI="2508_002" Name="XDot">324.345</Data>
+	<Data DFI_DUI="2509_002" Name="YDot">115.543</Data>
+	<Data DFI_DUI="2694_013" Name="switch">0</Data>
+	<Data DFI_DUI="2519_001" Name="size">2</Data>
+	<Data DFI_DUI="2520_001" Name="id_amp">5</Data>
+	<Data DFI_DUI="2521_001" Name="HeightSrc">1</Data>
+</Message>
+
+<Message Network="LINK_11" Name="M.3">
+	<Data DFI_DUI="2699_005" Name="Message Number" >3</Data>
+	<Data DFI_DUI="2500_003" Name="Track Number">0277</Data>
+	<Data DFI_DUI="2513_004" Name="Identity">3</Data>
+	<Data DFI_DUI="2514_002" Name="Primary Id Amp">2</Data>
+	<Data DFI_DUI="2694_017" Name="Scale Indicator">0</Data>
+	<Data DFI_DUI="2515_002" Name="Track Quality">5</Data>
+	<Data DFI_DUI="2691_002" Name="X Coordinate">11</Data>
+	<Data DFI_DUI="2692_002" Name="Y Coordinate">31.9828</Data>
+</Message>
+
+<Message Network="LINK_11" Name="M.83">
+	<Data DFI_DUI="2699_005" Name="Message Number">8</Data>
+	<Data DFI_DUI="2500_036" Name="Track Number">1543</Data>
+	<Data DFI_DUI="2522_001" Name="Unit Capability">8</Data>
+	<Data DFI_DUI="2523_001" Name="Current Mission">5</Data>
+	<Data DFI_DUI="2508_003" Name="X Dot">111.356</Data>
+	<Data DFI_DUI="2509_003" Name="Y Dot">110.422</Data>
+	<Data DFI_DUI="2517_003" Name="Time">0</Data>
+	<Data DFI_DUI="2694_013" Name="Switch">0</Data>
+	<Data DFI_DUI="2519_001" Name="Size">2</Data>
+	<Data DFI_DUI="2520_002" Name="Identity Amplification">4</Data>
+	<Data DFI_DUI="2524_001" Name="Helicopter Carrying">0</Data>
+</Message>
+
