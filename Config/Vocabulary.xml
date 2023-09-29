@@ -1,0 +1,151 @@
+
+<VocabularyList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+					xsi:noNamespaceSchemaLocation="Vocabulary.xsd">
+					
+	<Vocabulary Name="L11_ED6_2500_022_Link1_NATO_TrackNumber">
+	<!-- <Vocabulary Name="NTN_AlphaCode" ReportErrorAs="Invalid"> -->
+		 <Entry DataItem="A" BitCode="000"/>
+		 <Entry DataItem="E" BitCode="001"/>
+		 <Entry DataItem="G" BitCode="010"/>
+		 <Entry DataItem="H" BitCode="011"/>
+		 <Entry DataItem="J" BitCode="100"/>
+		 <Entry DataItem="K" BitCode="101"/>
+		 <Entry DataItem="L" BitCode="110"/>
+		 <Entry DataItem="M" BitCode="111"/>
+	</Vocabulary>
+
+	<Vocabulary Name="L11_ED6_2609_001_VoiceCallSign">
+	<!-- <Vocabulary Name="VoiceCallSign" ReportErrorAs="Invalid"> -->
+		<Entry DataItem=" " BitCode="000000"/>
+		<Entry DataItem="1" BitCode="000001"/>
+		<Entry DataItem="2" BitCode="000010"/>
+		<Entry DataItem="3" BitCode="000011"/>
+		<Entry DataItem="4" BitCode="000100"/>
+		<Entry DataItem="5" BitCode="000101"/>
+		<Entry DataItem="6" BitCode="000110"/>
+		<Entry DataItem="7" BitCode="000111"/>
+		<Entry DataItem="8" BitCode="001000"/>
+		<Entry DataItem="9" BitCode="001001"/>
+		<Entry DataItem="A" BitCode="001010"/>
+		<Entry DataItem="B" BitCode="001011"/>
+		<Entry DataItem="C" BitCode="001100"/>
+		<Entry DataItem="D" BitCode="001101"/>
+		<Entry DataItem="E" BitCode="001110"/>
+		<Entry DataItem="F" BitCode="001111"/>
+		<Entry DataItem="G" BitCode="010000"/>
+		<Entry DataItem="H" BitCode="010001"/>
+		<Entry DataItem="I" BitCode="010010"/>
+		<Entry DataItem="J" BitCode="010011"/>
+		<Entry DataItem="K" BitCode="010100"/>
+		<Entry DataItem="L" BitCode="010101"/>
+		<Entry DataItem="M" BitCode="010110"/>
+		<Entry DataItem="N" BitCode="010111"/>
+		<Entry DataItem="O" BitCode="011000"/>
+		<Entry DataItem="P" BitCode="011001"/>
+		<Entry DataItem="Q" BitCode="011010"/>
+		<Entry DataItem="R" BitCode="011011"/>
+		<Entry DataItem="S" BitCode="011100"/>
+		<Entry DataItem="T" BitCode="011101"/>
+		<Entry DataItem="U" BitCode="011110"/>
+		<Entry DataItem="V" BitCode="011111"/>
+		<Entry DataItem="W" BitCode="100000"/>
+		<Entry DataItem="X" BitCode="100001"/>
+		<Entry DataItem="Y" BitCode="100010"/>
+		<Entry DataItem="Z" BitCode="100011"/>
+		<Entry DataItem="0" BitCode="111111"/>
+	 </Vocabulary>
+	 
+	 <Vocabulary Name="L11_ED6_2500_048_19BitTrackNumber">
+		<Entry DataItem="0" BitCode="00000"/>
+		<Entry DataItem="1" BitCode="00001"/>
+		<Entry DataItem="2" BitCode="00010"/>
+		<Entry DataItem="3" BitCode="00011"/>
+		<Entry DataItem="4" BitCode="00100"/>
+		<Entry DataItem="5" BitCode="00101"/>
+		<Entry DataItem="6" BitCode="00110"/>
+		<Entry DataItem="7" BitCode="00111"/>
+		<Entry DataItem="A" BitCode="01000"/>
+		<Entry DataItem="B" BitCode="01001"/>
+		<Entry DataItem="C" BitCode="01010"/>
+		<Entry DataItem="D" BitCode="01011"/>
+		<Entry DataItem="E" BitCode="01100"/>
+		<Entry DataItem="F" BitCode="01101"/>
+		<Entry DataItem="G" BitCode="01110"/>
+		<Entry DataItem="H" BitCode="01111"/>
+		<Entry DataItem="J" BitCode="10000"/>
+		<Entry DataItem="K" BitCode="10001"/>
+		<Entry DataItem="L" BitCode="10010"/>
+		<Entry DataItem="M" BitCode="10011"/>
+		<Entry DataItem="N" BitCode="10100"/>
+		<Entry DataItem="P" BitCode="10101"/>
+		<Entry DataItem="Q" BitCode="10110"/>
+		<Entry DataItem="R" BitCode="10111"/>
+		<Entry DataItem="S" BitCode="11000"/>
+		<Entry DataItem="T" BitCode="11001"/>
+		<Entry DataItem="U" BitCode="11010"/>
+		<Entry DataItem="V" BitCode="11011"/>
+		<Entry DataItem="W" BitCode="11100"/>
+		<Entry DataItem="X" BitCode="11101"/>
+		<Entry DataItem="Y" BitCode="11110"/>
+		<Entry DataItem="Z" BitCode="11111"/>
+	 </Vocabulary>
+	 
+	 <Vocabulary Name="L11_ED6_2612_001_MissionNumber">
+	 	<Entry DataItem="A" BitCode="00000"/>
+		<Entry DataItem="B" BitCode="00001"/>
+		<Entry DataItem="C" BitCode="00010"/>
+		<Entry DataItem="D" BitCode="00011"/>
+		<Entry DataItem="E" BitCode="00100"/>
+		<Entry DataItem="F" BitCode="00101"/>
+		<Entry DataItem="G" BitCode="00110"/>
+		<Entry DataItem="H" BitCode="00111"/>
+		<Entry DataItem="I" BitCode="01000"/>
+		<Entry DataItem="J" BitCode="01001"/>
+		<Entry DataItem="K" BitCode="01010"/>
+		<Entry DataItem="L" BitCode="01011"/>
+		<Entry DataItem="M" BitCode="01100"/>
+		<Entry DataItem="N" BitCode="01101"/>
+		<Entry DataItem="O" BitCode="01110"/>
+		<Entry DataItem="P" BitCode="01111"/>
+		<Entry DataItem="Q" BitCode="10000"/>
+		<Entry DataItem="R" BitCode="10001"/>
+		<Entry DataItem="S" BitCode="10010"/>
+		<Entry DataItem="T" BitCode="10011"/>
+		<Entry DataItem="U" BitCode="10100"/>
+		<Entry DataItem="V" BitCode="10101"/>
+		<Entry DataItem="W" BitCode="10110"/>
+		<Entry DataItem="X" BitCode="10111"/>
+		<Entry DataItem="Y" BitCode="11000"/>
+		<Entry DataItem="Z" BitCode="11001"/>	
+	</Vocabulary>
+	
+	<Vocabulary Name="L11_ED6_2500_021_ATDL_1_TrackNumber_A1">
+	 	<Entry DataItem="A" BitCode="0000"/>
+		<Entry DataItem="B" BitCode="0001"/>
+		<Entry DataItem="C" BitCode="0010"/>
+		<Entry DataItem="D" BitCode="0011"/>
+		<Entry DataItem="E" BitCode="0100"/>
+		<Entry DataItem="F" BitCode="0101"/>
+		<Entry DataItem="G" BitCode="0110"/>
+		<Entry DataItem="H" BitCode="0111"/>
+		<Entry DataItem="I" BitCode="1000"/>
+		<Entry DataItem="J" BitCode="1001"/>
+		<Entry DataItem="K" BitCode="1010"/>
+		<Entry DataItem="L" BitCode="1011"/>
+		<Entry DataItem="M" BitCode="1100"/>
+		<Entry DataItem="N" BitCode="1101"/>
+		<Entry DataItem="P" BitCode="1110"/>
+		<Entry DataItem="Q" BitCode="1111"/>
+	</Vocabulary>
+
+	<Vocabulary Name="L11_ED6_2500_021_ATDL_1_TrackNumber_A2">
+	 	<Entry DataItem="A" BitCode="000"/>
+		<Entry DataItem="B" BitCode="001"/>
+		<Entry DataItem="C" BitCode="010"/>
+		<Entry DataItem="D" BitCode="011"/>
+		<Entry DataItem="E" BitCode="100"/>
+		<Entry DataItem="F" BitCode="101"/>
+		<Entry DataItem="G" BitCode="110"/>
+		<Entry DataItem="H" BitCode="111"/>
+	</Vocabulary>
+</VocabularyList>
